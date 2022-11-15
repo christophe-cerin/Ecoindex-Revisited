@@ -1,4 +1,4 @@
-# Ecoindex-Revisited
+# EcoIndex-Revisited
 
 In this project, we revisit the calculation method of the EcoIndex metric. This metric has been proposed to evaluate its absolute environmental performance from a given URL using a score out of 100 (higher is better). Our motivation comes from the fact that the calculation is based on both prior quantile calculations and weightings. We propose keeping only the weighting mechanism corresponding to documented and regularly available figures of the proportional breakdown of ICT's carbon footprint. 
 
