@@ -10,7 +10,9 @@ Indeed, the initial process requires recalculating each quantile according to th
 
 Python codes explained:
 
-- test_ecoindex.py implements the original EcoIndex
+- test_ecoindex.py implements the original EcoIndex;
 - random_projection.py implements a random projection method for the EcoIndex. The EcoIndex is given by the rank of the bin receiving the projection;
 - lsh.py implements a Locality Sensitive Hashing (LSH) method for the EcoIndex. The use the Falconn package;
--
+- collinearity.py implements a method considering the most collinear vector points with the query for the EcoIndex metric. First we isolate candidate points, then we compute the centroids. The EcoIndex is computed as a 'relative position', for the centroid, in the considered virtual space.
+
+Read first the headers of Python programs for the usage. You may also play with some internal variables.
