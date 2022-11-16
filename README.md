@@ -7,3 +7,10 @@ This way, we will be able to follow, from year to year, the evolution of web req
 We develop several ways to compute the score based on our new hypothesis, either using learning techniques (Locality Sensitive Hashing, K Nearest Neighbor) or matrix computation constitutes the project's first contribution. The second contribution corresponds to an experimental study that allows us to estimate the differences in results between the methods. The whole work allows us to observe the environmental performance of the WEB in a more generic way than with the initial method. 
 
 Indeed, the initial process requires recalculating each quantile according to the value of the chosen weights. It is, therefore, necessary to launch a benchmark, the HTTP archive, for example, at each new weighting. Our approaches do not require a systematic switch to a benchmark; thus, it is more generic than the previously known one.
+
+Python codes explained:
+
+- test_ecoindex.py implements the original EcoIndex
+- random_projection.py implements a random projection method for the EcoIndex. The EcoIndex is given by the rank of the bin receiving the projection;
+- lsh.py implements a Locality Sensitive Hashing (LSH) method for the EcoIndex. The use the Falconn package;
+-
