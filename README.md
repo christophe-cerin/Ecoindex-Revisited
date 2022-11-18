@@ -53,7 +53,7 @@ Plane-norms:  [[ 0.2251249   0.14437926  0.3455753 ]
 [  31   25 7241]  EcoIndex:  92.48458269614169  EcoIndex_Random_Projection:  91.8425268940261  Diff:  0.6420558021155927
 x=37.60 y=18.40 z=10874.33
 ```
-- lsh.py implements a Locality Sensitive Hashing (LSH) method for the EcoIndex. We use the Falconn package and generate two random queries, which are in the input for sure. We search for these two inputs and compute the EcoIndex according to the LSH method. We first go through the k=3 nearest neighbors, compute the barycenter, and then the EcoIndex.
+- lsh.py implements a Locality Sensitive Hashing (LSH) method for the EcoIndex. We use the Falconn package and generate two random queries, which are in the input for sure. We search for these two inputs and compute the EcoIndex according to the LSH method. We first go through the k=3 nearest neighbors, compute the barycenter, and then the EcoIndex. 
 ```
 $ python3 lsh.py
 Normalizing the dataset
@@ -81,7 +81,7 @@ Query time: 2.9719452999997884
 Precision: 1.0
 We considered a space of 11390625 3d points
 ```
--  collinearity.py implements a method considering the most collinear vector points with the query for the EcoIndex metric. First, we isolate candidate points and compute the centroid of these points. The EcoIndex is calculated as a 'relative position' for the centroid in the considered virtual space.
+-  collinearity.py implements a method considering the most collinear vector points with the query for the EcoIndex metric. First, we isolate candidate points and compute the centroid of these points. The EcoIndex is calculated as a 'relative position' for the centroid in the considered virtual space. The following example shows the query with Dom=1*9, request=1*8, and size=1*15. Parameter 8 corresponds to the virtual space size, i.e., 8^3=512, meaning that we deal with 512 points conceptually.
 ```
 $ python3 collinearity.py 1 1 1 9 5 15 8
 Arguments count: 8
