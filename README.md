@@ -18,7 +18,7 @@ Indeed, the initial process requires recalculating each quantile according to th
 $ python3 test_ecoindex.py http://www.google.fr
 http://www.google.fr ; 80 ; 12 ; 19160 ; 90.97 ; 1.18 ; 1.77
 ```
-- random_projection.py implements a random projection method for the EcoIndex. The EcoIndex is given by the rank of the bin receiving the projection. The code generates random samples, and we compute the historical EcoIndex, the new EcoIndex, and then the difference between the two.
+- random_projection.py implements a random projection method for the EcoIndex. The EcoIndex is given by the rank of the bin receiving the projection. The code generates random samples, and we compute the historical EcoIndex, the new EcoIndex, and then the difference between the two;
 ```
 $ python3 random_projection.py
 Plane-norms:  [[ 0.2251249   0.14437926  0.3455753 ]
