@@ -10,8 +10,9 @@ We develop several ways to compute the score based on our new hypothesis, either
 
 Indeed, the initial process requires recalculating each quantile according to the value of the chosen weights. It is, therefore, necessary to launch a benchmark, the HTTP archive, for example, at each new weighting. Our approaches do not require a systematic switch to a benchmark; thus, it is more generic than the previously known one.
 
-## Python codes explained
+## Python codes and dataset explained
 
+ - url_4ecoindex_dataset.csv is a dataset corresponding to more than 100k requests from the HTTParchive (a subset dated April 2022). This CSV file gives the URL, the DOM, requests, and the size collected through the execution of test_ecoindex.py on the URL. On the same line, you get the EcoIndex, then the water consumption and the gas emission values;
 - test_ecoindex.py implements the original EcoIndex; You gat a CSV-like file with the URL, DOM, request, size, EcoIndex, Water consumption, and Gas emmission;
 ```
 $ python3 test_ecoindex.py http://www.google.fr
