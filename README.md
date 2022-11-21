@@ -12,13 +12,13 @@ Indeed, the initial process requires recalculating each quantile according to th
 
 ## Python codes and dataset explained
 
- - url_4ecoindex_dataset.csv is a dataset corresponding to more than 100k requests from the HTTParchive (a subset dated April 2022). This CSV file gives the URL, the DOM, requests, and the size collected through the execution of test_ecoindex.py on the URL. On the same line, you get the EcoIndex, then the water consumption and the gas emission values;
-- test_ecoindex.py implements the original EcoIndex; You gat a CSV-like file with the URL, DOM, request, size, EcoIndex, Water consumption, and Gas emmission;
+ - url_4ecoindex_dataset.csv is a dataset corresponding to more than 100k requests from the HTTParchive (a subset dated April 2022). This CSV file gives the URL, the DOM, request, and the size collected through the execution of test_ecoindex.py on the URL. On the same line, you get the EcoIndex, then the water consumption and the gas emission values;
+- test_ecoindex.py implements the original EcoIndex; You get a CSV-like file with the URL, DOM, request, size, EcoIndex, water consumption, and gas emission;
 ```
 $ python3 test_ecoindex.py http://www.google.fr
 http://www.google.fr ; 80 ; 12 ; 19160 ; 90.97 ; 1.18 ; 1.77
 ```
-- random_projection.py implements a random projection method for the EcoIndex. The EcoIndex is given by the rank of the bin receiving the projection. The code generates random samples and we compute the historical EcoIndex, the new EcoIndex, and then the difference betwwen the two.
+- random_projection.py implements a random projection method for the EcoIndex. The EcoIndex is given by the rank of the bin receiving the projection. The code generates random samples, and we compute the historical EcoIndex, the new EcoIndex, and then the difference between the two.
 ```
 $ python3 random_projection.py
 Plane-norms:  [[ 0.2251249   0.14437926  0.3455753 ]
@@ -54,7 +54,7 @@ Plane-norms:  [[ 0.2251249   0.14437926  0.3455753 ]
 [  31   25 7241]  EcoIndex:  92.48458269614169  EcoIndex_Random_Projection:  91.8425268940261  Diff:  0.6420558021155927
 x=37.60 y=18.40 z=10874.33
 ```
-- lsh.py implements a Locality Sensitive Hashing (LSH) method for the EcoIndex. We use the Falconn package and generate two random queries, which are in the input for sure. We search for these two inputs and compute the EcoIndex according to the LSH method. We first go through the k=3 nearest neighbors, compute the barycenter, and then the EcoIndex. 
+- lsh.py implements a Locality Sensitive Hashing (LSH) method for the EcoIndex. We use the Falconn package and select two random queries taken from the input. We search for these two inputs and compute the EcoIndex according to the LSH method. We first go through the k=3 nearest neighbors, compute the barycenter, and then the EcoIndex; 
 ```
 $ python3 lsh.py
 Normalizing the dataset
@@ -103,4 +103,4 @@ Query time: 0.01154590000078315
 We used a 3-d virtual space of 512 random 3d points
 ```
 
-Anyway, please, read first the headers of Python programs for the usage. You may also play with some internal variables.
+Anyway, please, read first the headers of Python programs for usage. You may also play with some internal variables.
