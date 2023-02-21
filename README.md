@@ -104,3 +104,7 @@ We used a 3-d virtual space of 512 random 3d points
 ```
 
 Anyway, please, read first the headers of Python programs for usage. You may also play with some internal variables.
+
+## Analysis of the dataset
+
+File analysis.ipynb corresponds to a Jupyter notebook making some data analysis over file url_4ecoindex_dataset.csv. It aims to check how different the new EcoIndex and the historical EcoIndex, faced quantiles updates. Visualization helps to quantify the differences.
