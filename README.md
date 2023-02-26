@@ -109,4 +109,4 @@ Anyway, please, read first the headers of Python programs for usage. You may als
 
 ## Analysis of the dataset
 
-File analysis_mj.ipynb corresponds to a Jupyter notebook analyzing data over file url_4ecoindex_dataset.csv. It aims to check how different the new EcoIndex and the historical EcoIndex, faced quantiles updates. Visualization helps to quantify the differences throughout multiple techniques and metrics. File  analysis_mj.pdf is the generated PDF file obtained after running the analysis.
+File `analysis_mj.ipynb` corresponds to a Jupyter notebook analyzing data over file `url_4ecoindex_dataset.csv`. It aims to check how different the new EcoIndex and the historical EcoIndex, faced quantiles updates. Visualization helps to quantify the differences throughout multiple techniques and metrics. File `analysis_mj.pdf` is the generated PDF file obtained after running the analysis.
