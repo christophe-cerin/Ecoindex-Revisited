@@ -12,6 +12,8 @@ Indeed, the initial process requires recalculating each quantile according to th
 
 ## Python codes and dataset explained
 
+ - requirements.txt file serve as a list of items to be installed by pip, when using pip install. Files that use this format are often called “pip requirements.txt files”, since requirements.txt is usually what these files are named (although, that is not a requirement). So, to install the dependencies, run first `pip install -r requirements.txt`;
+
  - url_4ecoindex_dataset.csv is a dataset corresponding to more than 100k requests from the HTTParchive (a subset dated April 2022). This CSV file gives the URL, the DOM, request, and the size collected through the execution of test_ecoindex.py on the URL. On the same line, you get the EcoIndex, then the water consumption and the gas emission values;
 - test_ecoindex.py implements the original EcoIndex; You get a CSV-like file with the URL, DOM, request, size, EcoIndex, water consumption, and gas emission;
 ```
