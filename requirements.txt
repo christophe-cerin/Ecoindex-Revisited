@@ -145,4 +145,4 @@ pyparsing
 htmldom
 AdvancedHTMLParser
 tinycss
-
+sklearn_som
