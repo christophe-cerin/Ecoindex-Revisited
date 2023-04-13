@@ -105,6 +105,16 @@ Query time: 0.01154590000078315
 We used a 3-d virtual space of 512 random 3d points
 ```
 
+In the file `ComputeRMSE.py,` we explore the `url4` dataset and compute the RMSE (Root Mean Square Error) when considering the historical EcoIndex, and the one obtained through an LSH technique. For that purpose, we ported to Python 3  one existing LSH library and added some functionalities. See the comments in the source file. A sample of the result for the execution of this code is:
+```
+$ python ComputeRMSE.py
+========= READING DATASET ================
+========= END READING ================
+Average Root Mean Square Error: 38.97772913572205
+Min Root Mean Square Error: 22.115934637232897
+Max Root Mean Square Error: 65.88938579204769
+```
+
 Anyway, please, read first the headers of Python programs for usage. You may also play with some internal variables.
 
 ## Analysis of the dataset
