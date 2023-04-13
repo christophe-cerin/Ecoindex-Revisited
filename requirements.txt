@@ -146,3 +146,5 @@ htmldom
 AdvancedHTMLParser
 tinycss
 sklearn_som
+python_som
+statistics
