@@ -15,9 +15,12 @@ som_dataset = pd.read_csv('url_4ecoindex_dataset.csv',sep=';',encoding='utf-8',u
 # normalize the 3rd column => divide by 1024 to convert it in KB
 v = np.array([1,1,1024])
 som_dataset = som_dataset / v
+# normalize the 1st and 2nd columns => weights = 3 and 2 => mimic the historical EcoIndex
+v = np.array([3,2,1])
+som_dataset = som_dataset * v
 # centering the dataset
-center = np.mean(som_dataset, axis=0)
-som_dataset -= center
+#center = np.mean(som_dataset, axis=0)
+#som_dataset -= center
 
 historical = pd.read_csv('url_4ecoindex_dataset.csv',sep=';',encoding='utf-8',usecols=['EcoIndex'],low_memory=False,nrows=my_nrows)
 
@@ -66,9 +69,9 @@ for foo in range(1,25):
     for x,y in zip(som_dataset.values,historical.to_numpy()):
         query = [x[0],x[1],x[2]]
         for i in lsh.index(query):
-            query += center
-            myList = query.tolist()
-            myList = [int(x) for x in myList]
+            #query += center
+            #myList = query.tolist()
+            #myList = [int(x) for x in myList]
             predicted = (int(i,2)/math.pow(2,nb_bits))*100.0
             #print('Bucket id:',int(i,2),'for input:',myList,'EcoIndex LSH:',predicted,'Hitorical:',y[0])
             y_actual.append(y[0])
