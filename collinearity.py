@@ -238,7 +238,7 @@ if __name__ == '__main__':
         x += pool[0]
         y += pool[1]
         z += pool[2]
-    centroid = [x/N,y/N,z/N]
+    centroid = [x/K,y/K,z/K]
     print('Final centroid:',centroid)
     print('EcoIndex: {:.2f}'.format(100 - 100*sum(centroid)/dataset_copy.max()/3))
     
