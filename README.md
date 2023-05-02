@@ -115,7 +115,7 @@ Min Root Mean Square Error: 22.115934637232897
 Max Root Mean Square Error: 65.88938579204769
 ```
 
-Anyway, please, read first the headers of Python programs for usage. You may also play with some internal variables. This is the case for the `ComputeRMSE*.py` files thaat compute the Root Mean Square Error between the historical EcoIndex values and the other, methods (lsh-knn, random projection, and collinearity). File `ComputeRMSE_other.py` compute the RMSE for the new methods only. Here is an example of an execution*:
+Anyway, please, read first the headers of Python programs for usage. You may also play with some internal variables. This is the case for the `ComputeRMSE*.py` files that compute the Root Mean Square Error (RMSE)  between the historical EcoIndex values and the other methods (also known as lsh-knn, random projection, and collinearity). File `ComputeRMSE_other.py` compute the RMSE for the new methods only. Here is an example of the execution of this program:
 
 ```
 $ python ComputeRMSE_other.py
@@ -136,7 +136,7 @@ Max Root Mean Square Error: 20.32999999999999
 The `ComputeRMSE_other.py`code requires CSV files, namely `collinearity.csv, random_projection.csv` and `lsh_knn.csv`. Note that you can generate the CSV files through a command like:
 
 ```
-$ python ComputeRMSE_lsh_knn.py  > lsh_knn_1.csv
+$ python ComputeRMSE_lsh_knn.py  > lsh_knn.csv
 ```
 Check with the source code because this Python program may generate two output formats depending on an internal boolean value (myCSV).
 
