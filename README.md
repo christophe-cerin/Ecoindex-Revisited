@@ -138,7 +138,7 @@ The `ComputeRMSE_other.py`code requires CSV files, namely `collinearity.csv, ran
 ```
 $ python ComputeRMSE_lsh_knn.py  > lsh_knn.csv
 ```
-Check with the source code because this Python program may generate two output formats depending on an internal boolean value (myCSV).
+Otherwise, you can use the provided ones. Check with the source code because this Python program may generate two output formats depending on an internal boolean value (myCSV).
 
 ## Analysis of the dataset
 
