@@ -1,5 +1,4 @@
 from __future__ import print_function
-
 import math
 # Import NumPy and Pandas for storing data
 import numpy as np
@@ -7,14 +6,21 @@ import pandas as pd
 import falconn
 import timeit
 import random            
-
 from operator import itemgetter
 import itertools
 from scipy.spatial import distance
-
 # Import libraries for plotting results
 import matplotlib.pyplot as plt
 import seaborn as sns
+
+__author__ = "Christophe Cerin"
+__copyright__ = "Copyright 2023"
+__credits__ = ["Christophe Cerin"]
+__license__ = "GPL"
+__version__ = "1.0.1"
+__maintainer__ = "Christophe Cerin"
+__email__ = "christophe.cerin@univ-paris13.fr"
+__status__ = "Experimental"
 
 # Boolean indicating if we generate a CSV format or not.
 # In this last case we print the RMSE between the historical
@@ -142,8 +148,6 @@ N1 = 15
 N  = N1*N1
 x, y, z = np.meshgrid(np.arange(1, N+1,dtype=np.float32), np.arange(1, N+1,dtype=np.float32), np.arange(1, N+1,dtype=np.float32))
 dataset = np.stack([x.flatten(), y.flatten(), z.flatten()], axis = -1)
-#print(dataset)
-#print('Nb elements of our dataset:',len(dataset))
 
 #
 # Make cubes. We replace N points by a single point i.e,. the centroid
@@ -151,14 +155,7 @@ dataset = np.stack([x.flatten(), y.flatten(), z.flatten()], axis = -1)
 #dataset_bak = np.empty([int(len(dataset)/N),3],dtype=np.float32)
 dataset_bak = np.full((int(len(dataset)/(N1*N1*N1)),3),np.float32(0.0))
 make_cubes_random(dataset,N1,dataset_bak)
-#for ind, i in enumerate(dataset_bak):
-#     print(ind,':',i)
-
-#d = {}
-#for elem,ind in zip(dataset,np.arange(0,len(dataset_bak))):
-#    d[tuple(elem)] = ind
 dataset_copy = np.copy(dataset_bak)
-#print(dataset)
 
 # It's important not to use doubles, unless they are strictly necessary.
 # If your dataset consists of doubles, convert it to floats using `astype`.
@@ -176,16 +173,7 @@ if not myCSV:
 d = {}
 for (elem, value) in zip(dataset_bak, dataset_copy):
     d[tuple(elem)] = value
-#for key in d:
-#    print(key, '->', d[key])
-    
-#def ind(array, item):
-#    for idx, val in enumerate(array):
-#        #print(idx,val)
-#        if np.array_equal(val,item):
-#            return idx
 
-#############################################
 for foo in range(1,2):
 
     y_actual = []
@@ -204,8 +192,6 @@ for foo in range(1,2):
         query_norm = query
         query_norm /= np.linalg.norm(query_norm, axis=0).reshape(-1, 1) 
         #print('Query          :',query)
-             
-        t1 = timeit.default_timer()
 
         res = []
         dd = {}
@@ -213,13 +199,9 @@ for foo in range(1,2):
             res1 = ComputeCollinearity(query_norm[0][0], query_norm[0][1], query_norm[0][2],i[0], i[1], i[2])
             dd[tuple(res1)] = i
             res = res + [res1]
-        #print(res)
-        #print(dd)
 
         # sort the list of points
         sorted_points = sorted(res, key=itemgetter(0,1,2))
-        #for i in sorted_points:
-        #    print(i)
 
         #
         # Compute the distances
@@ -245,10 +227,7 @@ for foo in range(1,2):
             print(dom * weight_dom,';', request * weight_request,';', size * weight_size,'; {:.2f}'.format(known),'; {:.2f}'.format(predicted))
         else:
             print('Predicted EcoIndex: {:.2f}'.format(predicted),'; Historical EcoIndex:{:.2f}'.format(known))
-    
-        t2 = timeit.default_timer()
 
-        #print('Query time: {}'.format((t2 - t1)))
         #print('We used a 3-d virtual space of',len(res),'random 3d points')
 
         y_actual.append(known)
@@ -260,8 +239,6 @@ for foo in range(1,2):
         RMSE = math.sqrt(MSE)
         average_RMSE.append(RMSE)
         min_RMSE = min(min_RMSE,RMSE)
-        max_RMSE = max(max_RMSE,RMSE)
-        #print(RMSE,min_RMSE,max_RMSE)
 
 if not myCSV:
     from statistics import mean
