@@ -6,6 +6,15 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 
+__author__ = "Christophe Cerin"
+__copyright__ = "Copyright 2023"
+__credits__ = ["Christophe Cerin"]
+__license__ = "GPL"
+__version__ = "1.0.1"
+__maintainer__ = "Christophe Cerin"
+__email__ = "christophe.cerin@univ-paris13.fr"
+__status__ = "Experimental"
+
 print('========= RANDOM PROJECTION VERSUS COLLINEARITY ============')
 
 random_projection = pd.read_csv('random_projection.csv',sep=';',encoding='ASCII',low_memory=False)
@@ -23,8 +32,6 @@ for x,y in zip(random_projection.to_numpy(),collinearity.to_numpy()):
         predicted = y[4]
  
         MSE = np.square(np.subtract(actual,predicted))
- 
-        #print(x[4],y[4],MSE)
 
         RMSE = math.sqrt(MSE)
         average_RMSE.append(RMSE)
