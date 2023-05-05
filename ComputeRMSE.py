@@ -6,6 +6,15 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 
+__author__ = "Christophe Cerin"
+__copyright__ = "Copyright 2023"
+__credits__ = ["Christophe Cerin"]
+__license__ = "GPL"
+__version__ = "1.0.1"
+__maintainer__ = "Christophe Cerin"
+__email__ = "christophe.cerin@univ-paris13.fr"
+__status__ = "Experimental"
+
 #
 # Init seed random generator
 #
@@ -35,12 +44,8 @@ som_dataset = som_dataset / v
 historical = pd.read_csv('url_4ecoindex_dataset.csv',sep=';',encoding='utf-8',usecols=['EcoIndex'],low_memory=False,nrows=my_nrows)
 
 # Normalize all the lenghts, since we care about the cosine similarity.
-#print(som_dataset.dtypes)
-#assert som_dataset.dtypes == np.float32
 #print('Normalizing the dataset')
 #som_dataset /= np.linalg.norm(som_dataset, axis=1).reshape(-1, 1)
-#print('dataset normalized: ',dataset)
-#sns.load_dataset('som_dataset')
 print('========= END READING ================')
 
 import sys
@@ -58,20 +63,6 @@ for foo in range(1,25):
     #
     nb_bits = 19
     lsh = LSHash(nb_bits, 3)
-
-    """
-    for i in lsh.index([1,2,3,4,5,6,7,8]):
-        print('Bucket id:',int(i,2))
-    for i in lsh.index([2,3,4,5,6,7,8,9]):
-        print('Bucket id:',int(i,2))
-    for i in lsh.index([10,12,99,1,5,31,2,3]):
-        print('Bucket id:',int(i,2))
-    print(lsh.query([1,2,3,4,5,6,7,7]))
-    """
-
-    #print(type(som_dataset.values))
-    #print(type(som_dataset.values))
-    #print(type(historical.to_numpy()))
 
     y_actual = []
     y_predicted = []
