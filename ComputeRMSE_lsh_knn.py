@@ -1,15 +1,22 @@
 from __future__ import print_function
-
 import math
 # Import NumPy and Pandas for storing data
 import numpy as np
 import pandas as pd
 import falconn
 import timeit
-
 # Import libraries for plotting results
 import matplotlib.pyplot as plt
 import seaborn as sns
+
+__author__ = "Christophe Cerin"
+__copyright__ = "Copyright 2023"
+__credits__ = ["Christophe Cerin"]
+__license__ = "GPL"
+__version__ = "1.0.1"
+__maintainer__ = "Christophe Cerin"
+__email__ = "christophe.cerin@univ-paris13.fr"
+__status__ = "Experimental"
 
 # Boolean indicating if we generate a CSV format or not.
 # In this last case we print the RMSE between the historical
@@ -44,7 +51,6 @@ for elem,ind in zip(dataset,np.arange(0,len(dataset))):
     d[tuple(elem)] = ind
 dataset_copy = np.copy(dataset)
 
-#print('Type dataset:',type(dataset))
 
 if not myCSV:
     print('========= READING DATASET ================')
@@ -53,12 +59,6 @@ som_dataset = pd.read_csv('url_4ecoindex_dataset.csv',sep=';',encoding='utf-8',u
 # normalize the 3rd column => divide by 1024 to convert it in KB
 v = np.array([1,1,1024,1])
 som_dataset = som_dataset / v
-# add the weights
-#v = np.array([3.0,2.0,1.0])
-#som_dataset = som_dataset * v
-#print('Max:',np.max(som_dataset))
-# Normalize
-#som_dataset *= (float(N+1)/som_dataset.max())
 # Filter nul values
 som_dataset = som_dataset[(som_dataset['dom'] > 0) & (som_dataset['request'] > 0) & (som_dataset['size'] > 0) ]
 # Keep historical EcoIndex values
@@ -68,23 +68,10 @@ historical = som_dataset['EcoIndex']
 #
 som_dataset = som_dataset.to_numpy()
 som_dataset = som_dataset.astype(np.float32)
-#
-# centering the dataset
-#
-#center = np.mean(dataset, axis=0)
-#print('Center:',center)
-#dataset -= center
+
 #print('Normalizing the dataset')
 dataset /= np.linalg.norm(dataset, axis=1).reshape(-1,1)
-#print('dataset normalized: ',dataset)
 
-#historical = pd.read_csv('url_4ecoindex_dataset.csv',sep=';',encoding='utf-8',usecols=['EcoIndex'],low_memory=False,nrows=my_nrows)
-#historical = historical.astype(np.float32)
-
-# Normalize all the lenghts, since we care about the cosine similarity.
-#print(som_dataset.dtypes)
-#assert som_dataset.dtypes == np.float32
-#sns.load_dataset('som_dataset')
 #print('========= END READING ================')
 
 # we build only 21 tables, increasing this quantity will improve the query time
@@ -96,12 +83,6 @@ number_of_tables = 21
 # If your dataset consists of doubles, convert it to floats using `astype`.
 # print(dataset.dtype)
 #assert som_dataset.dtype == float32
-
-# Normalize all the lenghts, since we care about the cosine similarity.
-#print('Normalizing the dataset')
-#som_dataset /= np.linalg.norm(som_dataset, axis=1).reshape(-1, 1)
-#print('dataset normalized: ',dataset)
-#print('Done')
 
 params_cp = falconn.LSHConstructionParameters()
 params_cp.dimension = 3#len(som_dataset[0])
@@ -124,14 +105,9 @@ falconn.compute_number_of_hash_functions(18, params_cp)
 
 if not myCSV:
     print('========= CONSTRUCTING LSH TABLE =========')
-#t1 = timeit.default_timer()
+
 table = falconn.LSHIndex(params_cp)
 table.setup(dataset)
-#t2 = timeit.default_timer()
-#print('========= CONSTRUCTION DONE =========')
-#print(dir(table))
-#print(dir(table._table.__repr__))
-#print('Construction time: {}'.format(t2 - t1))
 
 def ind(array, item):
         for idx, val in enumerate(array):
@@ -153,19 +129,11 @@ for foo in range(1,2):
  
     for x,known in zip(som_dataset,historical.to_numpy()):
         queries = [np.array([x[0],x[1],x[2]])]
-        #print('Queries:',queries)
 
-        # Perform linear scan using NumPy to get answers to the queries.
-        #print('Solving queries using linear scan')
-        #t1 = timeit.default_timer()
         answers = []
         for query in queries:
             #print('Argmax:',np.dot(som_dataset, query).argmax())
             answers.append(np.dot(dataset, query).argmax())
-        #print('Type answers:',type(answers),'Answers:',answers)
-        #t2 = timeit.default_timer()
-        #print('Done')
-        #print('Linear scan time: {} per query'.format((t2 - t1) / float(len(queries))))
         
         query_object = table.construct_query_object()
 
@@ -203,9 +171,6 @@ for foo in range(1,2):
                     left = number_of_probes
             number_of_probes = right
 
-        #print('Done')
-        #print('{} probes'.format(number_of_probes))
-
         # final evaluation
         score = 0
         for (i, query) in enumerate(queries):
@@ -215,8 +180,6 @@ for foo in range(1,2):
                         #print('found: ',query,' --> ',dataset_copy[answers[i]])
                 #k_n = [query_object.find_nearest_neighbor(query)]
                 k_n = query_object.find_k_nearest_neighbors(dataset_copy[answers[i]],N)
-                #k_n = query_object.find_near_neighbors(query,10.0)
-                #print('k neareast: ',k_n,'Query:',query)
                 centroid = []
                 xx = 0
                 yy = 0
