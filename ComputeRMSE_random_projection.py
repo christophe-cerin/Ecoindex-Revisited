@@ -6,6 +6,15 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 
+__author__ = "Christophe Cerin"
+__copyright__ = "Copyright 2023"
+__credits__ = ["Christophe Cerin"]
+__license__ = "GPL"
+__version__ = "1.0.1"
+__maintainer__ = "Christophe Cerin"
+__email__ = "christophe.cerin@univ-paris13.fr"
+__status__ = "Experimental"
+
 # Boolean indicating if we generate a CSV format or not.
 # In this last case we print the RMSE between the historical
 # EcoIndex and the one computed with the 'colinearity method'.
@@ -37,22 +46,6 @@ som_dataset = som_dataset[(som_dataset['dom'] > 0) & (som_dataset['request'] > 0
 # Keep historical EcoIndex values
 historical = som_dataset['EcoIndex']
 
-# normalize the 1st and 2nd columns => weights = 3 and 2 => mimic the historical EcoIndex
-#v = np.array([3,2,1])
-#som_dataset = som_dataset * v
-# centering the dataset
-#center = np.mean(som_dataset, axis=0)
-#som_dataset -= center
-
-#historical = pd.read_csv('url_4ecoindex_dataset.csv',sep=';',encoding='utf-8',usecols=['EcoIndex'],low_memory=False,nrows=my_nrows)
-
-# Normalize all the lenghts, since we care about the cosine similarity.
-#print(som_dataset.dtypes)
-#assert som_dataset.dtypes == np.float32
-#print('Normalizing the dataset')
-#som_dataset /= np.linalg.norm(som_dataset, axis=1).reshape(-1, 1)
-#print('dataset normalized: ',dataset)
-#sns.load_dataset('som_dataset')
 if not myCSV:
     print('========= END READING ================')
 
