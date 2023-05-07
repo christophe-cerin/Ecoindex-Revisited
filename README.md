@@ -107,10 +107,12 @@ We used a 3-d virtual space of 512 random 3d points
 
 - In the file `ComputeRMSE_euclidean_distance.py,` we compute an EcoIndex score based on the Euclidean distance from each (dom, request, size) point to the origin, namely (0, 0, 0). This is the most trivial definition we can put in place to bypass the quantiles and the weights. Our implementation considers that the point with the smallest distance to the origin has an EcoIndex score of 100, and the point with the greatest distance to the origin has an EcoIndex score of 100. Note that the input dataset does not contain the outliers we compute with the Scikit-learn iForest implementation. Indeed, we noticed, for instance, that the original dataset contains size components of high values. This fact induces that many EcoIndex scores are above 99.5 since the distance of all these corresponding points is low compared to the distance of a high value for the size component. Eliminating the outliers, we get:
 
+<center>
 <figure>
-<img src="Figures/Figures_1.png" alt="Trulli" style="width:100%">
+<img src="Figures/Figure_1.png" alt="" style="width:100%">
 <figcaption align = "center"><b>Fig.1 - </b> example of a dataset after canceling the outliers</figcaption>
 </figure>
+</center>
 
 - In the file `ComputeRMSE.py,` we explore the `url_4ecoindex_dataset.csv` dataset, normalized with the weights (3, 2, 1) to align with the historical EcoIndex, and compute the RMSE (Root Mean Square Error) when considering the historical EcoIndex, and the one obtained through an LSH technique (Random projection method). For that purpose, we ported to Python 3  one existing LSH library and added some functionalities. See the comments in the source file. A sample of the result for the execution of this code is:
 ```
