@@ -105,6 +105,8 @@ Query time: 0.01154590000078315
 We used a 3-d virtual space of 512 random 3d points
 ```
 
+- In the file `ComputeRMSE_euclidean_distance.py,` we compute an EcoIndex score based on the Euclidean distance from each (dom, request, size) point to the origin, namely (0, 0, 0). This is the most trivial definition we can put in place to bypass the quantiles and the weights. Our implementation considers that the point with the smallest distance to the origin has an EcoIndex score of 100, and the point with the greatest distance to the origin has an EcoIndex score of 100. Note that the input dataset does not contain the outliers we compute with the Scikit-learn iForest implementation. Indeed, we noticed, for instance, that the original dataset contains size components of high values. This fact induces that many EcoIndex scores are above 99.5 since the distance of all these corresponding points is low compared to the distance of a high value for the size component.
+
 - In the file `ComputeRMSE.py,` we explore the `url_4ecoindex_dataset.csv` dataset, normalized with the weights (3, 2, 1) to align with the historical EcoIndex, and compute the RMSE (Root Mean Square Error) when considering the historical EcoIndex, and the one obtained through an LSH technique (Random projection method). For that purpose, we ported to Python 3  one existing LSH library and added some functionalities. See the comments in the source file. A sample of the result for the execution of this code is:
 ```
 $ python ComputeRMSE.py
@@ -124,16 +126,20 @@ Average Root Mean Square Error: 27.018904696132598
 Min Root Mean Square Error: 0.00999999999999801
 Max Root Mean Square Error: 79.45
 ========= RANDOM PROJECTION VERSUS LSH KNN ============
-Average Root Mean Square Error: 26.949078085642316
+Average Root Mean Square Error: 27.043718769357834
 Min Root Mean Square Error: 0.01999999999999602
-Max Root Mean Square Error: 71.84
+Max Root Mean Square Error: 74.21
 ========= COLLINEARITY VERSUS LSH KNN ============
-Average Root Mean Square Error: 3.8493098236775816
-Min Root Mean Square Error: 0.009999999999990905
-Max Root Mean Square Error: 20.32999999999999
+Average Root Mean Square Error: 3.910766054098699
+Min Root Mean Square Error: 0.0
+Max Root Mean Square Error: 21.130000000000003
+========= DISTANCE VERSUS HISTORICAL ============
+Average Root Mean Square Error: 27.564330966461355
+Min Root Mean Square Error: 0.00999999999999801
+Max Root Mean Square Error: 64.66
 ```
 
-The `ComputeRMSE_other.py`code requires CSV files, namely `collinearity.csv, random_projection.csv` and `lsh_knn.csv`. Note that you can generate the CSV files through a command like:
+The `ComputeRMSE_other.py`code requires CSV files, namely `collinearity.csv, random_projection.csv`, `lsh_knn.csv`, and `euclidean_distance.csv`. Note that you can generate the CSV files through a command like:
 
 ```
 $ python ComputeRMSE_lsh_knn.py  > lsh_knn.csv
