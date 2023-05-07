@@ -6,15 +6,6 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-__author__ = "Christophe Cerin"
-__copyright__ = "Copyright 2023"
-__credits__ = ["Christophe Cerin"]
-__license__ = "GPL"
-__version__ = "1.0.1"
-__maintainer__ = "Christophe Cerin"
-__email__ = "christophe.cerin@univ-paris13.fr"
-__status__ = "Experimental"
-
 print('========= RANDOM PROJECTION VERSUS COLLINEARITY ============')
 
 random_projection = pd.read_csv('random_projection.csv',sep=';',encoding='ASCII',low_memory=False)
@@ -32,6 +23,8 @@ for x,y in zip(random_projection.to_numpy(),collinearity.to_numpy()):
         predicted = y[4]
  
         MSE = np.square(np.subtract(actual,predicted))
+ 
+        #print(x[4],y[4],MSE)
 
         RMSE = math.sqrt(MSE)
         average_RMSE.append(RMSE)
@@ -106,6 +99,31 @@ for x,y in zip(collinearity.to_numpy(),lsh_knn.to_numpy()):
     else:
         print("Error on",x[0],y[0],x[1],y[1],x[2],y[2],x[3],y[3])
         break
+
+from statistics import mean
+print("Average Root Mean Square Error:",mean(average_RMSE))
+print("Min Root Mean Square Error:",min_RMSE)
+print("Max Root Mean Square Error:",max_RMSE)
+
+print('========= DISTANCE VERSUS HISTORICAL ============')
+
+my_distance = pd.read_csv('euclidean_distance.csv',sep=';',encoding='ASCII',low_memory=False)
+
+average_RMSE = []
+min_RMSE = 100000000
+max_RMSE = -100000000
+
+for x in zip(my_distance.to_numpy()):
+    
+    actual = x[0][3]
+    predicted = x[0][4]
+ 
+    MSE = np.square(np.subtract(actual,predicted))
+ 
+    RMSE = math.sqrt(MSE)
+    average_RMSE.append(RMSE)
+    min_RMSE = min(min_RMSE,RMSE)
+    max_RMSE = max(max_RMSE,RMSE)
 
 from statistics import mean
 print("Average Root Mean Square Error:",mean(average_RMSE))
