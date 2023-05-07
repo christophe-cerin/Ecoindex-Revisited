@@ -111,7 +111,7 @@ We used a 3-d virtual space of 512 random 3d points
 <figure>
  <img src="Figures/Figure_1.png" alt="" style="width:50%">
  <br>
- <figcaption align="center"><b>Fig.1 - </b> example of a dataset after canceling the outliers</figcaption>
+ <figcaption align="center"><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Fig.1 - </b> example of a dataset after canceling the outliers</figcaption>
  </figure>
 </span>
 
