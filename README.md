@@ -113,8 +113,9 @@ We used a 3-d virtual space of 512 random 3d points
  <br>
  <figcaption><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Fig.1 - </b> example of a dataset after canceling the outliers</figcaption>
  </figure>
+<br>&nbsp;<br>
 </span>
-<br>
+
 
 - In the file `ComputeRMSE.py,` we explore the `url_4ecoindex_dataset.csv` dataset, normalized with the weights (3, 2, 1) to align with the historical EcoIndex, and compute the RMSE (Root Mean Square Error) when considering the historical EcoIndex, and the one obtained through an LSH technique (Random projection method). For that purpose, we ported to Python 3  one existing LSH library and added some functionalities. See the comments in the source file. A sample of the result for the execution of this code is:
 ```
