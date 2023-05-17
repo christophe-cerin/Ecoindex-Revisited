@@ -102,9 +102,7 @@ for x,y in zip(som_dataset.values,historical.to_numpy()):
     zdata.append(x[2])
     
     XX = sum(y_predicted)/len(y_predicted)
-    if not myCSV:
-        print('EcoIndex grade:','{:.2f}'.format(XX),'; Historical EcoIndex:', '{:.2f}'.format(y))
-    else:
+    if myCSV:
         print(int(x[0]),';',int(x[1]),';','{:.2f}'.format(x[2]),';', '{:.2f}'.format(y),';', '{:.2f}'.format(XX))
 
 if not myCSV:
