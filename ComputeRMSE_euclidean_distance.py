@@ -10,7 +10,7 @@ import timeit
 # Boolean indicating if we generate a CSV format or not.
 # In this last case we print the RMSE between the historical
 # EcoIndex and the one computed with the 'colinearity method'.
-myCSV = True
+myCSV = False
 
 # Nomber of lines to read in the input csv files
 my_nrows = 102000
@@ -40,6 +40,9 @@ tt = list(map(lambda x: som_dataset.index[x],np.where(clf == -1)[0].tolist()))
 #    print(som_dataset.iloc[[i]])
 
 som_dataset.drop(tt, axis=0,inplace = True)
+#
+# update my_nrows
+my_nrows, ncols = som_dataset.shape
 
 #
 # We keep a copy
