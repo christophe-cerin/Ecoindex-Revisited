@@ -49,6 +49,8 @@ historical = som_dataset['EcoIndex']
 if not myCSV:
     print('========= END READING ================')
 
+t1 = timeit.default_timer()
+
 # Prime numbers
 #p1,p2,p3 = 73856093, 19349663, 83492791
 
@@ -105,6 +107,8 @@ for x,y in zip(som_dataset.values,historical.to_numpy()):
     XX = sum(y_predicted)/len(y_predicted)
     if myCSV:
         print(int(x[0]),';',int(x[1]),';','{:.2f}'.format(x[2]),';', '{:.2f}'.format(y),';', '{:.2f}'.format(XX))
+
+t2 = timeit.default_timer()
 
 if not myCSV:
     from statistics import mean
