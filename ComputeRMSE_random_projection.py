@@ -19,7 +19,7 @@ __status__ = "Experimental"
 # Boolean indicating if we generate a CSV format or not.
 # In this last case we print the RMSE between the historical
 # EcoIndex and the one computed with the 'colinearity method'.
-myCSV = True
+myCSV = False
 
 # Nomber of lines to read in the input csv files
 my_nrows = 15000
@@ -44,6 +44,10 @@ v = np.array([1,1,1024,1])
 som_dataset = som_dataset / v
 # Filter nul values
 som_dataset = som_dataset[(som_dataset['dom'] > 0) & (som_dataset['request'] > 0) & (som_dataset['size'] > 0) ]
+#
+# Update my_nrows
+my_nrows, ncols = som_dataset.shape
+
 # Keep historical EcoIndex values
 historical = som_dataset['EcoIndex']
 
