@@ -24,7 +24,7 @@ __status__ = "Experimental"
 myCSV = False
 
 # number of rows to read in the input csv files
-my_nrows = 1500
+my_nrows = 15
 
 #
 # Init seed random generator
@@ -61,6 +61,10 @@ v = np.array([1,1,1024,1])
 som_dataset = som_dataset / v
 # Filter nul values
 som_dataset = som_dataset[(som_dataset['dom'] > 0) & (som_dataset['request'] > 0) & (som_dataset['size'] > 0) ]
+#
+# update my_nrows
+my_nrows, ncols = som_dataset.shape
+
 # Keep historical EcoIndex values
 historical = som_dataset['EcoIndex']
 #
