@@ -21,10 +21,10 @@ __status__ = "Experimental"
 # Boolean indicating if we generate a CSV format or not.
 # In this last case we print the RMSE between the historical
 # EcoIndex and the one computed with the 'colinearity method'.
-myCSV = True
+myCSV = False
 
 # number of rows to read in the input csv files
-my_nrows = 5000
+my_nrows = 1500
 
 #
 # Init seed random generator
@@ -198,10 +198,9 @@ for foo in range(1,2):
                 predicted = 100 - 100*sum(centroid)/dataset_copy.max()/3 #sum(centroid)/3
                 #print(sum(centroid),dataset_copy.max(),100*sum(centroid)/N/3)
 
+                #print('EcoIndex: {:.2f}'.format(100 - 100*sum(centroid)/dataset_copy.max()/3),'; Historical EcoIndex : {:.2f}'.format(known))
                 if myCSV:
-                    print('EcoIndex: {:.2f}'.format(100 - 100*sum(centroid)/dataset_copy.max()/3),'; Historical EcoIndex : {:.2f}'.format(known[0]))
-                #else:
-                #    print(x[0],';',x[1],';',x[2],'; {:.2f}'.format(known),'; {:.2f}'.format(100 - 100*sum(centroid)/dataset_copy.max()/3))
+                    print(x[0],';',x[1],';',x[2],'; {:.2f}'.format(known),'; {:.2f}'.format(100 - 100*sum(centroid)/dataset_copy.max()/3))
                 y_actual.append(known)
                 y_predicted.append(predicted)
                 #print(predicted,known)
