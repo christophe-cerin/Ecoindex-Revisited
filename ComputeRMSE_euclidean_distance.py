@@ -5,6 +5,7 @@ import pandas as pd
 # Import libraries for plotting results
 import matplotlib.pyplot as plt
 import seaborn as sns
+import timeit
 
 # Boolean indicating if we generate a CSV format or not.
 # In this last case we print the RMSE between the historical
