@@ -25,10 +25,10 @@ __status__ = "Experimental"
 # Boolean indicating if we generate a CSV format or not.
 # In this last case we print the RMSE between the historical
 # EcoIndex and the one computed with the 'colinearity method'.
-myCSV = True
+myCSV = False
 
 # Nomber of lines to read in the input csv files
-my_nrows = 15000
+my_nrows = 150
 
 #
 # Init seed random generator
@@ -136,6 +136,8 @@ som_dataset = som_dataset[(som_dataset['dom'] > 0) & (som_dataset['request'] > 0
 #
 som_dataset = som_dataset.to_numpy()
 som_dataset = som_dataset.astype(np.float32)
+# update nrows
+my_nrows, ncols = som_dataset.shape
 
 import sys
 
@@ -241,6 +243,7 @@ for foo in range(1,2):
         RMSE = math.sqrt(MSE)
         average_RMSE.append(RMSE)
         min_RMSE = min(min_RMSE,RMSE)
+        max_RMSE = max(max_RMSE,RMSE)
 
 t2 = timeit.default_timer()
 
