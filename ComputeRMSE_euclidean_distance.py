@@ -111,6 +111,8 @@ if not myCSV:
     print("Average Root Mean Square Error:",mean(average_RMSE))
     print("Min Root Mean Square Error:",min_RMSE)
     print("Max Root Mean Square Error:",max_RMSE)
+    print('Compute time: {} per entry of the dataset'.format((t2 - t1) / my_nrows))
+    print('Total completion time: {}'.format((t2 - t1)))
     
 #
 # if you do (not) want to plot your dataset, please (un)comment le following lines
