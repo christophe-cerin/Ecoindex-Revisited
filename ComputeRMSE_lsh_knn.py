@@ -74,6 +74,8 @@ dataset /= np.linalg.norm(dataset, axis=1).reshape(-1,1)
 
 #print('========= END READING ================')
 
+t1 = timeit.default_timer()
+
 # we build only 21 tables, increasing this quantity will improve the query time
 # at a cost of slower preprocessing and larger memory footprint, feel free to
 # play with this number
@@ -211,7 +213,9 @@ for foo in range(1,2):
         min_RMSE = min(min_RMSE,RMSE)
         max_RMSE = max(max_RMSE,RMSE)
         #print(RMSE,min_RMSE,max_RMSE)
-    
+
+t2 = timeit.default_timer()        
+        
 if not myCSV:
     from statistics import mean
     print("Average Root Mean Square Error:",mean(average_RMSE))
