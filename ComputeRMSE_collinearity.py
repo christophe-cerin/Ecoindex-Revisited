@@ -139,6 +139,8 @@ som_dataset = som_dataset.astype(np.float32)
 
 import sys
 
+t1 = timeit.default_timer()
+
 average_RMSE = []
 min_RMSE = 1000000000
 max_RMSE = -1000000000
@@ -239,6 +241,8 @@ for foo in range(1,2):
         RMSE = math.sqrt(MSE)
         average_RMSE.append(RMSE)
         min_RMSE = min(min_RMSE,RMSE)
+
+t2 = timeit.default_timer()
 
 if not myCSV:
     from statistics import mean
