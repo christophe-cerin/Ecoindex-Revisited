@@ -5,6 +5,7 @@ import pandas as pd
 # Import libraries for plotting results
 import matplotlib.pyplot as plt
 import seaborn as sns
+import timeit
 
 __author__ = "Christophe Cerin"
 __copyright__ = "Copyright 2023"
@@ -49,6 +50,8 @@ historical = som_dataset['EcoIndex']
 if not myCSV:
     print('========= END READING ================')
 
+t1 = timeit.default_timer()    
+    
 import sys
 sys.path.append('LSHash/lshash')
 from lshash import *
@@ -88,6 +91,8 @@ for x,y in zip(som_dataset.values,historical.to_numpy()):
     average_RMSE.append(RMSE)
     min_RMSE = min(min_RMSE,RMSE)
     max_RMSE = max(max_RMSE,RMSE)
+
+t2 = timeit.default_timer()
 
 if not myCSV:
     from statistics import mean
