@@ -225,8 +225,8 @@ for foo in range(1,2):
         predicted = 100 - 100*sum(centroid)/dataset_copy.max()/3
         if myCSV:
             print(dom * weight_dom,';', request * weight_request,';', size * weight_size,'; {:.2f}'.format(known),'; {:.2f}'.format(predicted))
-        else:
-            print('Predicted EcoIndex: {:.2f}'.format(predicted),'; Historical EcoIndex:{:.2f}'.format(known))
+        #else:
+        #    print('Predicted EcoIndex: {:.2f}'.format(predicted),'; Historical EcoIndex:{:.2f}'.format(known))
 
         #print('We used a 3-d virtual space of',len(res),'random 3d points')
 
