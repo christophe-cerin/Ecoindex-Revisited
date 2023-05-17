@@ -79,9 +79,7 @@ for x,y in zip(som_dataset.values,historical.to_numpy()):
             y_actual.append(y)
             y_predicted.append((int(i,2)/math.pow(2,nb_bits))*100.0)
 
-    if not myCSV:
-        print('EcoIndex: {:.2f}'.format(sum(y_predicted)/len(y_predicted)),'; Historical EcoIndex: {:.2f}'.format(y))
-    else:
+    if myCSV:
         print(x[0],';',x[1],';',x[2],'; {:.2f}'.format(y),'; {:.2f}'.format(sum(y_predicted)/len(y_predicted)),)
 
     MSE = np.square(np.subtract(y_actual,y_predicted)).mean() 
