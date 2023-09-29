@@ -164,6 +164,10 @@ File `analysis_mj.ipynb` corresponds to a Jupyter notebook analyzing data over f
 
 File `som_test1.py` generates a PNG image corresponding to a self-organizing map. SOM is used in the exploration phase, and it clusters data. The dataset used in this example is `som_dataset.csv`, built from ARCEP (`2022_QoS_Metropole_data_habitations.csv`) and ENEDIS (`consommation-electrique-par-secteur-dactivite-commune.csv` ; `production-electrique-par-filiere-a-la-maille-commune.csv`) datasets. Some data from these datasets are combined with EcoIndex data (DOM, request, size...) for the URL. This example aims to demonstrate that we can deal with more than 10 attributes related to energy. Check with the header of `som_dataset.csv` to appreciate the metrics we deal with, and also with ARCEP and ENEDIS for their open data (`https://data.enedis.fr/explore/dataset/consommation-electrique-par-secteur-dactivite-commune/export/` ; `https://data.enedis.fr/explore/dataset/production-electrique-par-filiere-a-la-maille-commune/export/?sort=annee` and `https://files.data.gouv.fr/arcep_donnees/mobile/mesures_qualite_arcep/2022/Metropole/`). 
 
+## Computing the energy and emissions of the new methods
+
+Files `codecarbon_*.py` compute the energy and emissions of our new methods over 100k URLs taken in the `url_4ecoindex_dataset.csv` dataset for the given (dom, req, size) attributes.
+
 
 
 
