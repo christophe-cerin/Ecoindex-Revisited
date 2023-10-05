@@ -162,8 +162,140 @@ File `analysis_mj.ipynb` corresponds to a Jupyter notebook analyzing data over f
 
 ## Self-Organizing Map (SOM)
 
-File `som_test1.py` generates a PNG image corresponding to a self-organizing map. SOM is used in the exploration phase, and it clusters data. The dataset used in this example is `som_dataset.csv`, built from ARCEP (`2022_QoS_Metropole_data_habitations.csv`) and ENEDIS (`consommation-electrique-par-secteur-dactivite-commune.csv` ; `production-electrique-par-filiere-a-la-maille-commune.csv`) datasets. Some data from these datasets are combined with EcoIndex data (DOM, request, size...) for the URL. This example aims to demonstrate that we can deal with more than 10 attributes related to energy. Check with the header of `som_dataset.csv` to appreciate the metrics we deal with, and also with ARCEP and ENEDIS for their open data (`https://data.enedis.fr/explore/dataset/consommation-electrique-par-secteur-dactivite-commune/export/` ; `https://data.enedis.fr/explore/dataset/production-electrique-par-filiere-a-la-maille-commune/export/?sort=annee` and `https://files.data.gouv.fr/arcep_donnees/mobile/mesures_qualite_arcep/2022/Metropole/`). 
-
+File `som_test1.py` generates a PNG image corresponding to a self-organizing map. SOM is used in the exploration phase, and it clusters data. The dataset used in this example is `som_dataset.csv`, built from ARCEP (`2022_QoS_Metropole_data_habitations.csv`) and ENEDIS (`consommation-electrique-par-secteur-dactivite-commune.csv` ; `production-electrique-par-filiere-a-la-maille-commune.csv`) datasets. Some data from these datasets are combined with EcoIndex data (DOM, request, size...) for the URL. This example aims to demonstrate that we can deal with more than 10 energy-related attributes. Check with the header of `som_dataset.csv` to appreciate the metrics we deal with, and also with ARCEP and ENEDIS for their open data (`https://data.enedis.fr/explore/dataset/consommation-electrique-par-secteur-dactivite-commune/export/`; `https://data.enedis.fr/explore/dataset/production-electrique-par-filiere-a-la-maille-commune/export/?sort=annee` and `https://files.data.gouv.fr/arcep_donnees/mobile/mesures_qualite_arcep/2022/Metropole/`). In detail, the attributes are:
+'''
+=== Reading ARCEP data from data/2022_QoS_Metropole_data_habitations.csv ===
+Column names of ARCEP data:
+<class 'pandas.core.frame.DataFrame'>
+Int64Index: 5 entries, 0 to 4
+Data columns (total 30 columns):
+ #   Column                          Non-Null Count  Dtype
+---  ------                          --------------  -----
+ 0   lieu                            5 non-null      object
+ 1   situation                       5 non-null      object
+ 2   date                            5 non-null      object
+ 3   heure                           5 non-null      object
+ 4   operateur                       5 non-null      object
+ 5   Profil                          5 non-null      object
+ 6   rsrp                            5 non-null      object
+ 7   latitude                        5 non-null      float64
+ 8   longitude                       5 non-null      float64
+ 9   protocole                       5 non-null      object
+ 10  url                             5 non-null      object
+ 11  file_name                       1 non-null      object
+ 12  file_type                       1 non-null      object
+ 13  terminal                        5 non-null      object
+ 14  adresse                         5 non-null      object
+ 15  strate                          5 non-null      object
+ 16  sous_strate                     4 non-null      object
+ 17  page_chargée_moins_5s           4 non-null      float64
+ 18  page_chargée_moins_10s          4 non-null      float64
+ 19  débit_en_Mbit/s                 0 non-null      float64
+ 20  video_en_qualité_parfaite       0 non-null      float64
+ 21  video_en_qualité_correcte       0 non-null      float64
+ 22  fichier_chargé_en_moins_de_30s  1 non-null      float64
+ 23  temps_en_secondes               5 non-null      object
+ 24  delai_lancement_stream_s        0 non-null      float64
+ 25  lag_stream_s                    0 non-null      float64
+ 26  accroche_5G                     5 non-null      int64
+ 27  INSEE_DEP                       0 non-null      float64
+ 28  INSEE_REG                       0 non-null      float64
+ 29  NOM_DEP                         0 non-null      float64
+dtypes: float64(13), int64(1), object(16)
+memory usage: 1.2+ KB
+None
+=== Reading year 2021 ENEDIS data from of data/consommation-electrique-par-secteur-dactivite-commune.csv ===
+Column names of ENEDIS data (consomation):
+<class 'pandas.core.frame.DataFrame'>
+Int64Index: 32202 entries, 5 to 292431
+Data columns (total 47 columns):
+ #   Column                                                                     Non-Null Count  Dtype
+---  ------                                                                     --------------  -----
+ 0   Année                                                                      32202 non-null  int64
+ 1   Code Commune                                                               32202 non-null  int64
+ 2   Nom Commune                                                                32202 non-null  object
+ 3   Code EPCI                                                                  32202 non-null  object
+ 4   Nom EPCI                                                                   32202 non-null  object
+ 5   Type EPCI                                                                  32202 non-null  object
+ 6   Code Département                                                           32202 non-null  int64
+ 7   Nom Département                                                            32202 non-null  object
+ 8   Code Région                                                                32202 non-null  int64
+ 9   Nom Région                                                                 32202 non-null  object
+ 10  CODE CATEGORIE CONSOMMATION                                                32202 non-null  object
+ 11  CODE GRAND SECTEUR                                                         32202 non-null  object
+ 12  CODE SECTEUR NAF2                                                          0 non-null      float64
+ 13  Nb sites                                                                   32156 non-null  float64
+ 14  Conso totale (MWh)                                                         32156 non-null  float64
+ 15  Conso moyenne (MWh)                                                        32156 non-null  float64
+ 16  Nombre de mailles secretisées                                              32202 non-null  float64
+ 17  Part thermosensible (%)                                                    9231 non-null   float64
+ 18  Conso totale  usages thermosensibles (MWh)                                 9231 non-null   float64
+ 19  Conso totale  usages non thermosensibles (MWh)                             9231 non-null   float64
+ 20  Thermosensibilité totale (kWh/DJU)                                         9231 non-null   float64
+ 21  Conso totale corrigée de l'aléa climatique  usages thermosensibles (MWh)   9231 non-null   float64
+ 22  Conso moyenne usages thermosensibles (MWh)                                 9231 non-null   float64
+ 23  Conso moyenne  usages non thermosensibles (MWh)                            9231 non-null   float64
+ 24  Thermosensibilité moyenne (kWh/DJU)                                        9231 non-null   float64
+ 25  Conso moyenne corrigée de l'aléa climatique  usages thermosensibles (MWh)  9231 non-null   float64
+ 26  DJU à TR                                                                   9231 non-null   float64
+ 27  DJU à TN                                                                   9231 non-null   float64
+ 28  Nombre d'habitants                                                         32202 non-null  float64
+ 29  Taux de logements collectifs                                               32202 non-null  float64
+ 30  Taux de résidences principales                                             32202 non-null  float64
+ 31  Superficie des logements < 30 m2                                           32202 non-null  float64
+ 32  Superficie des logements 30 à 40 m2                                        32202 non-null  float64
+ 33  Superficie des logements 40 à 60 m2                                        32202 non-null  float64
+ 34  Superficie des logements 60 à 80 m2                                        32202 non-null  float64
+ 35  Superficie des logements 80 à 100 m2                                       32202 non-null  float64
+ 36  Superficie des logements > 100 m2                                          32202 non-null  float64
+ 37  Résidences principales avant 1919                                          32202 non-null  float64
+ 38  Résidences principales de 1919 à 1945                                      32202 non-null  float64
+ 39  Résidences principales de 1946 à 1970                                      32202 non-null  float64
+ 40  Résidences principales de 1971 à 1990                                      32202 non-null  float64
+ 41  Résidences principales de 1991 à 2005                                      32202 non-null  float64
+ 42  Résidences principales de 2006 à 2015                                      32202 non-null  float64
+ 43  Résidences principales après 2016                                          32202 non-null  float64
+ 44  Taux de chauffage électrique                                               32202 non-null  float64
+ 45  geom                                                                       32202 non-null  object
+ 46  centroid                                                                   32202 non-null  object
+dtypes: float64(33), int64(4), object(10)
+memory usage: 11.8+ MB
+None
+=== Reading year 2021 ENEDIS data from of data/production-electrique-par-filiere-a-la-maille-commune.csv ===
+Column names of ENEDIS data (production):
+<class 'pandas.core.frame.DataFrame'>
+Int64Index: 43474 entries, 379295 to 428763
+Data columns (total 25 columns):
+ #   Column                                                  Non-Null Count  Dtype
+---  ------                                                  --------------  -----
+ 0   Année                                                   43474 non-null  int64
+ 1   Nom commune                                             43474 non-null  object
+ 2   Code commune                                            43474 non-null  int64
+ 3   Nom EPCI                                                43474 non-null  object
+ 4   Code EPCI                                               43474 non-null  object
+ 5   Type EPCI                                               43474 non-null  object
+ 6   Nom département                                         43474 non-null  object
+ 7   Code département                                        43474 non-null  int64
+ 8   Nom région                                              43474 non-null  object
+ 9   Code région                                             43474 non-null  int64
+ 10  Domaine de tension                                      43474 non-null  object
+ 11  Nb sites Photovoltaïque Enedis                          25674 non-null  float64
+ 12  Energie produite annuelle Photovoltaïque Enedis (MWh)   25674 non-null  float64
+ 13  Nb sites Eolien Enedis                                  43285 non-null  float64
+ 14  Energie produite annuelle Eolien Enedis (MWh)           43285 non-null  float64
+ 15  Nb sites Hydraulique Enedis                             43362 non-null  float64
+ 16  Energie produite annuelle Hydraulique Enedis (MWh)      43362 non-null  float64
+ 17  Nb sites Bio Energie Enedis                             43422 non-null  float64
+ 18  Energie produite annuelle Bio Energie Enedis (MWh)      43422 non-null  float64
+ 19  Nb sites Cogénération Enedis                            43453 non-null  float64
+ 20  Energie produite annuelle Cogénération Enedis (MWh)     43453 non-null  float64
+ 21  Nb sites Autres filières Enedis                         43092 non-null  float64
+ 22  Energie produite annuelle Autres filières Enedis (MWh)  43092 non-null  float64
+ 23  Geo Shape                                               43474 non-null  object
+ 24  centroid                                                43474 non-null  object
+dtypes: float64(12), int64(4), object(9)
+memory usage: 8.6+ MB
+'''
 ## Computing the energy and emissions of the new methods
 
 Files `codecarbon_*.py` compute the energy and emissions of our new methods over 100k URLs taken in the `url_4ecoindex_dataset.csv` dataset for the given (dom, req, size) attributes.
