@@ -297,6 +297,8 @@ dtypes: float64(12), int64(4), object(9)
 memory usage: 8.6+ MB
 ```
 
+The following CSV files contain data issued from ARCEP, ENEDIS, and coming from the EcoIndex computation: `som_dataset.csv, som1.csv`. The exploitation of these two datasets is done with `som.py, som_test1.py`, respectively. Note that `som_test1.py` deals with categorial data (operator, city, and URL) and builds maps, i.e., a clustering and a U-matrix. Note also that the Python codes generate PNG images. All of these implementations come in the context of the exploration of datasets related to the environmental impact of HTTP requests.
+
 ## Computing the energy and emissions of the new methods
 
 Files `codecarbon_*.py` compute the energy and emissions of our new methods over 100k URLs taken in the `url_4ecoindex_dataset.csv` dataset for the given (dom, req, size) attributes.
