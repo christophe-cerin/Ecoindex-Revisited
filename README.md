@@ -297,11 +297,45 @@ dtypes: float64(12), int64(4), object(9)
 memory usage: 8.6+ MB
 ```
 
-The following CSV files contain data issued from ARCEP, ENEDIS, and coming from the EcoIndex computation: `som_dataset.csv, som1.csv`. The exploitation of these two datasets is done with `som.py, som_test1.py`, respectively. Note that `som_test1.py` deals with categorial data (operator, city, and URL) and builds maps, i.e., a clustering and a U-matrix. Note also that the Python codes generate PNG images. All of these implementations come in the context of the exploration of datasets related to the environmental impact of HTTP requests.
+The following CSV files contain data issued from ARCEP, ENEDIS, and coming from the EcoIndex computation: `som_dataset.csv, som1.csv`. The exploitation of these two datasets is done with `som.py, som_test1.py`, respectively. Note that `som_test1.py` deals with categorial data (operator, city, and URL) and builds maps, i.e., a clustering and a U-matrix. Note also that the Python codes generate PNG images. All of these implementations come in the context of exploring datasets related to the environmental impact of HTTP requests.
 
 ## Computing the energy and emissions of the new methods
 
 Files `codecarbon_*.py` compute the energy and emissions of our new methods over 100k URLs taken in the `url_4ecoindex_dataset.csv` dataset for the given (dom, req, size) attributes.
+
+## Bibliography
+
+```
+@inproceedings{DBLP:conf/compsac/CerinTM23,
+  author       = {Christophe C{\'{e}}rin and
+                  Denis Trystram and
+                  Tarek Menouer},
+  editor       = {Hossain Shahriar and
+                  Yuuichi Teranishi and
+                  Alfredo Cuzzocrea and
+                  Moushumi Sharmin and
+                  Dave Towey and
+                  A. K. M. Jahangir Alam Majumder and
+                  Hiroki Kashiwazaki and
+                  Ji{-}Jiang Yang and
+                  Michiharu Takemoto and
+                  Nazmus Sakib and
+                  Ryohei Banno and
+                  Sheikh Iqbal Ahamed},
+  title        = {The EcoIndex metric, reviewed from the perspective of Data Science
+                  techniques},
+  booktitle    = {47th {IEEE} Annual Computers, Software, and Applications Conference,
+                  {COMPSAC} 2023, Torino, Italy, June 26-30, 2023},
+  pages        = {1141--1146},
+  publisher    = {{IEEE}},
+  year         = {2023},
+  url          = {https://doi.org/10.1109/COMPSAC57700.2023.00172},
+  doi          = {10.1109/COMPSAC57700.2023.00172},
+  timestamp    = {Mon, 07 Aug 2023 15:56:21 +0200},
+  biburl       = {https://dblp.org/rec/conf/compsac/CerinTM23.bib},
+  bibsource    = {dblp computer science bibliography, https://dblp.org}
+}
+```
 
 
 
