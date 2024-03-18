@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Example file to illustrate the EcoIndex Computation through
+Example file to illustrate the eco_index Computation through
 the lsh method. Here we use the Python Falconn package for
 lsh/k-NN computation
 
@@ -24,10 +24,10 @@ Done
 21 probes
 found:  [0.6101043  0.6101043  0.50551504]  -->  [35. 35. 29.]
 Centroid of the k nearest neighbors: [34.02040816326531, 34.02040816326531, 28.183673469387756]
-EcoIndex: 34.54
+eco_index: 34.54
 found:  [0.3680033  0.38965055 0.8442429 ]  -->  [17. 18. 39.]
 Centroid of the k nearest neighbors: [16.755102040816325, 17.816326530612244, 38.48979591836735]
-EcoIndex: 50.30
+eco_index: 50.30
 Query time: 0.017494949999672826
 Precision: 1.0
 We considered a space of 117649 3d points
@@ -215,7 +215,7 @@ if __name__ == '__main__':
             z += XX[2]
         centroid = [x/len(k_n),y/len(k_n),z/len(k_n)]
         print('Centroid of the k nearest neighbors:',centroid)
-        print('EcoIndex: {:.2f}'.format(100 - 100*sum(centroid)/dataset_copy.max()/3))
+        print('eco_index: {:.2f}'.format(100 - 100*sum(centroid)/dataset_copy.max()/3))
             
     t2 = timeit.default_timer()
 

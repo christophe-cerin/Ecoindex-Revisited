@@ -34,14 +34,14 @@ som_dataset = pd.read_csv('url_4ecoindex_dataset.csv',sep=';',encoding='utf-8',u
 # normalize the 3rd column => divide by 1024 to convert it in KB
 v = np.array([1,1,1024])
 som_dataset = som_dataset / v
-# normalize the 1st and 2nd columns => weights = 3 and 2 => mimic the historical EcoIndex
+# normalize the 1st and 2nd columns => weights = 3 and 2 => mimic the historical eco_index
 #v = np.array([3,2,1])
 #som_dataset = som_dataset * v
 # centering the dataset
 #center = np.mean(som_dataset, axis=0)
 #som_dataset -= center
 
-historical = pd.read_csv('url_4ecoindex_dataset.csv',sep=';',encoding='utf-8',usecols=['EcoIndex'],low_memory=False,nrows=my_nrows)
+historical = pd.read_csv('url_4ecoindex_dataset.csv',sep=';',encoding='utf-8',usecols=['eco_index'],low_memory=False,nrows=my_nrows)
 
 # Normalize all the lenghts, since we care about the cosine similarity.
 #print('Normalizing the dataset')
@@ -74,8 +74,8 @@ for foo in range(1,25):
             #myList = query.tolist()
             #myList = [int(x) for x in myList]
             predicted = (int(i,2)/math.pow(2,nb_bits))*100.0
-            #print('Bucket id:',int(i,2),'for input:',myList,'EcoIndex LSH:',predicted,'Hitorical:',y[0])
-            #print('EcoIndex: {:.2f}'.format(predicted),' ----- EcoIndex Historical: {:.2f}'.format(y[0]))
+            #print('Bucket id:',int(i,2),'for input:',myList,'eco_index LSH:',predicted,'Hitorical:',y[0])
+            #print('eco_index: {:.2f}'.format(predicted),' ----- eco_index Historical: {:.2f}'.format(y[0]))
             y_actual.append(y[0])
             y_predicted.append((int(i,2)/math.pow(2,nb_bits))*100.0)
 

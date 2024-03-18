@@ -1,10 +1,10 @@
-# EcoIndex-Revisited
+# eco_index-Revisited
 
 ## Introduction
 
-In this project, we revisit the calculation method of the EcoIndex metric. This metric has been proposed to evaluate its absolute environmental performance from a given URL using a score out of 100 (higher is better). Our motivation comes from the fact that the calculation is based on both prior quantile calculations and weightings. We propose keeping only the weighting mechanism corresponding to documented and regularly available figures of the proportional breakdown of ICT's carbon footprint. 
+In this project, we revisit the calculation method of the eco_index metric. This metric has been proposed to evaluate its absolute environmental performance from a given URL using a score out of 100 (higher is better). Our motivation comes from the fact that the calculation is based on both prior quantile calculations and weightings. We propose keeping only the weighting mechanism corresponding to documented and regularly available figures of the proportional breakdown of ICT's carbon footprint. 
 
-This way, we will be able to follow, from year to year, the evolution of web requests from a carbon footprint point of view. For a URL, our new calculation method takes as parameters three weights and the three typical values of the EcoIndex (DOM size, number of HTTP/HTTPS requests, KB transferred) and returns an environmental performance score. 
+This way, we will be able to follow, from year to year, the evolution of web requests from a carbon footprint point of view. For a URL, our new calculation method takes as parameters three weights and the three typical values of the eco_index (DOM size, number of HTTP/HTTPS requests, KB transferred) and returns an environmental performance score. 
 
 We develop several ways to compute the score based on our new hypothesis, either using learning techniques (Locality Sensitive Hashing, K Nearest Neighbor) or matrix computation constitutes the project's first contribution. The second contribution corresponds to an experimental study that allows us to estimate the differences in results between the methods. The whole work allows us to observe the environmental performance of the WEB in a more generic way than with the initial method. 
 
@@ -14,13 +14,15 @@ Indeed, the initial process requires recalculating each quantile according to th
 
  - requirements.txt file serve as a list of items to be installed by pip, when using pip install. Files that use this format are often called “pip requirements.txt files”, since requirements.txt is usually what these files are named (although, that is not a requirement). So, to install the dependencies, run first `pip install -r requirements.txt`;
 
- - url_4ecoindex_dataset.csv is a dataset corresponding to more than 100k requests from the HTTParchive (a subset dated April 2022). This CSV file gives the URL, the DOM, request, and the size collected through the execution of test_ecoindex.py on the URL. On the same line, you get the EcoIndex, then the water consumption and the gas emission values;
-- test_ecoindex.py implements the original EcoIndex; You get a CSV-like file with the URL, DOM, request, size, EcoIndex, water consumption, and gas emission;
+ - `config.ini` file serves as a configuration for the `verbose` parameter. Manually setting it to a value greater than 1 will result in a comprehensive debugging description being included in the output. However, if `verbose` is set to 1, only the expected output will be printed.
+
+ - url_4ecoindex_dataset.csv is a dataset corresponding to more than 100k requests from the HTTParchive (a subset dated April 2022). This CSV file gives the URL, the DOM, request, and the size collected through the execution of test_eco_index.py on the URL. On the same line, you get the eco_index, then the water consumption and the gas emission values;
+- test_eco_index.py implements the original eco_index; You get a CSV-like file with the URL, DOM, request, size, eco_index, water consumption, and gas emission;
 ```
-$ python3 test_ecoindex.py http://www.google.fr
+$ python3 test_eco_index.py http://www.google.fr
 http://www.google.fr ; 80 ; 12 ; 19160 ; 90.97 ; 1.18 ; 1.77
 ```
-- random_projection.py implements a random projection method for the EcoIndex. The EcoIndex is given by the rank of the bin receiving the projection. The code generates random samples, and we compute the historical EcoIndex, the new EcoIndex, and then the difference between the two;
+- random_projection.py implements a random projection method for the eco_index. The eco_index is given by the rank of the bin receiving the projection. The code generates random samples, and we compute the historical eco_index, the new eco_index, and then the difference between the two;
 ```
 $ python3 random_projection.py
 Plane-norms:  [[ 0.2251249   0.14437926  0.3455753 ]
@@ -39,24 +41,24 @@ Plane-norms:  [[ 0.2251249   0.14437926  0.3455753 ]
  [ 0.21681595  0.38261832  0.28784253]
  [-0.24997801  0.00581405 -0.13328182]
  [-0.07256512 -0.2118799   0.09576998]]
-[   41    10 18482]  EcoIndex:  94.19653572440276  EcoIndex_Random_Projection:  91.8425268940261  Diff:  2.354008830376671
-[   46    10 15112]  EcoIndex:  93.94971253435023  EcoIndex_Random_Projection:  91.8425268940261  Diff:  2.1071856403241327
-[   24    28 14929]  EcoIndex:  92.25771647830204  EcoIndex_Random_Projection:  91.8425268940261  Diff:  0.4151895842759501
-[   23    29 14974]  EcoIndex:  92.12546728053375  EcoIndex_Random_Projection:  91.8425268940261  Diff:  0.2829403865076614
-[   44    24 12971]  EcoIndex:  91.92722608680008  EcoIndex_Random_Projection:  91.8425268940261  Diff:  0.08469919277398219
-[   45    12 11180]  EcoIndex:  93.7688189594573  EcoIndex_Random_Projection:  91.8425268940261  Diff:  1.9262920654312126
-[  49   23 3386]  EcoIndex:  91.8101687710553  EcoIndex_Random_Projection:  91.8425268940261  Diff:  -0.032358122970791214
-[  32   15 3451]  EcoIndex:  94.11957681502088  EcoIndex_Random_Projection:  91.8425268940261  Diff:  2.2770499209947843
-[   49    14 19967]  EcoIndex:  93.1775632826618  EcoIndex_Random_Projection:  91.8425268940261  Diff:  1.3350363886357002
-[  47   18 6663]  EcoIndex:  92.80346731355671  EcoIndex_Random_Projection:  91.8425268940261  Diff:  0.9609404195306155
-[  37   18 4369]  EcoIndex:  93.34840712853818  EcoIndex_Random_Projection:  91.8425268940261  Diff:  1.505880234512091
-[  41   19 4908]  EcoIndex:  92.96591415890795  EcoIndex_Random_Projection:  91.8425268940261  Diff:  1.1233872648818561
-[   20    21 16709]  EcoIndex:  93.68259813659849  EcoIndex_Random_Projection:  91.8425268940261  Diff:  1.8400712425723924
-[  35   10 8773]  EcoIndex:  94.57081062462156  EcoIndex_Random_Projection:  91.8425268940261  Diff:  2.7282837305954644
-[  31   25 7241]  EcoIndex:  92.48458269614169  EcoIndex_Random_Projection:  91.8425268940261  Diff:  0.6420558021155927
+[   41    10 18482]  eco_index:  94.19653572440276  eco_index_Random_Projection:  91.8425268940261  Diff:  2.354008830376671
+[   46    10 15112]  eco_index:  93.94971253435023  eco_index_Random_Projection:  91.8425268940261  Diff:  2.1071856403241327
+[   24    28 14929]  eco_index:  92.25771647830204  eco_index_Random_Projection:  91.8425268940261  Diff:  0.4151895842759501
+[   23    29 14974]  eco_index:  92.12546728053375  eco_index_Random_Projection:  91.8425268940261  Diff:  0.2829403865076614
+[   44    24 12971]  eco_index:  91.92722608680008  eco_index_Random_Projection:  91.8425268940261  Diff:  0.08469919277398219
+[   45    12 11180]  eco_index:  93.7688189594573  eco_index_Random_Projection:  91.8425268940261  Diff:  1.9262920654312126
+[  49   23 3386]  eco_index:  91.8101687710553  eco_index_Random_Projection:  91.8425268940261  Diff:  -0.032358122970791214
+[  32   15 3451]  eco_index:  94.11957681502088  eco_index_Random_Projection:  91.8425268940261  Diff:  2.2770499209947843
+[   49    14 19967]  eco_index:  93.1775632826618  eco_index_Random_Projection:  91.8425268940261  Diff:  1.3350363886357002
+[  47   18 6663]  eco_index:  92.80346731355671  eco_index_Random_Projection:  91.8425268940261  Diff:  0.9609404195306155
+[  37   18 4369]  eco_index:  93.34840712853818  eco_index_Random_Projection:  91.8425268940261  Diff:  1.505880234512091
+[  41   19 4908]  eco_index:  92.96591415890795  eco_index_Random_Projection:  91.8425268940261  Diff:  1.1233872648818561
+[   20    21 16709]  eco_index:  93.68259813659849  eco_index_Random_Projection:  91.8425268940261  Diff:  1.8400712425723924
+[  35   10 8773]  eco_index:  94.57081062462156  eco_index_Random_Projection:  91.8425268940261  Diff:  2.7282837305954644
+[  31   25 7241]  eco_index:  92.48458269614169  eco_index_Random_Projection:  91.8425268940261  Diff:  0.6420558021155927
 x=37.60 y=18.40 z=10874.33
 ```
-- lsh.py implements a Locality Sensitive Hashing (LSH) method for the EcoIndex. We use the Falconn package and select two random queries taken from the input. We search for these two inputs and compute the EcoIndex according to the LSH method. We first go through the k=3 nearest neighbors, compute the barycenter, and then the EcoIndex; 
+- lsh.py implements a Locality Sensitive Hashing (LSH) method for the eco_index. We use the Falconn package and select two random queries taken from the input. We search for these two inputs and compute the eco_index according to the LSH method. We first go through the k=3 nearest neighbors, compute the barycenter, and then the eco_index; 
 ```
 $ python3 lsh.py
 Normalizing the dataset
@@ -76,15 +78,15 @@ Done
 21 probes
 found:  [0.48846823 0.10575085 0.86614984]  -->  [ 88.  19. 156.]
 Centroid of the k nearest neighbors: [93.84, 20.31111111111111, 166.40444444444444]
-EcoIndex: 58.44
+eco_index: 58.44
 found:  [0.885314   0.42814365 0.18141681]  -->  [122.  59.  25.]
 Centroid of the k nearest neighbors: [168.88444444444445, 81.68444444444444, 34.60888888888889]
-EcoIndex: 57.75
+eco_index: 57.75
 Query time: 2.9719452999997884
 Precision: 1.0
 We considered a space of 11390625 3d points
 ```
--  collinearity.py implements a method considering the most collinear vector points with the query for the EcoIndex metric. First, we isolate candidate points and compute the centroid of these points. The EcoIndex is calculated as a 'relative position' for the centroid in the considered virtual space. The following example shows the query with Dom=1<span>&#215;</span>9, request=1<span>&#215;</span>8, and size=1<span>&#215;</span>15. Parameter 8 corresponds to the virtual space size, i.e., 8<sup>3</sup>=512, meaning that we deal with 512 points conceptually.
+-  collinearity.py implements a method considering the most collinear vector points with the query for the eco_index metric. First, we isolate candidate points and compute the centroid of these points. The eco_index is calculated as a 'relative position' for the centroid in the considered virtual space. The following example shows the query with Dom=1<span>&#215;</span>9, request=1<span>&#215;</span>8, and size=1<span>&#215;</span>15. Parameter 8 corresponds to the virtual space size, i.e., 8<sup>3</sup>=512, meaning that we deal with 512 points conceptually.
 ```
 $ python3 collinearity.py 1 1 1 9 5 15 8
 Arguments count: 8
@@ -100,12 +102,12 @@ Query          : [9, 5, 15]
 Normalizing the dataset of length: 512
 Dataset normalized
 Final centroid: [1.140625, 0.671875, 1.890625]
-EcoIndex: 98.07
+eco_index: 98.07
 Query time: 0.01154590000078315
 We used a 3-d virtual space of 512 random 3d points
 ```
 
-- In the file `ComputeRMSE_euclidean_distance.py,` we compute an EcoIndex score based on the Euclidean distance from each (dom, request, size) point to the origin, namely (0, 0, 0). This is the most trivial definition we can put in place to bypass the quantiles and the weights. Our implementation considers that the point with the smallest distance to the origin has an EcoIndex score of 100, and the point with the greatest distance to the origin has an EcoIndex score of 100. Note that the input dataset does not contain the outliers we compute with the Scikit-learn iForest implementation. Indeed, we noticed, for instance, that the original dataset contains size components of high values. This fact induces that many EcoIndex scores are above 99.5 since the distance of all these corresponding points is low compared to the distance of a high value for the size component. Figure 1 presents an example of a dataset after eliminating the outliers.
+- In the file `ComputeRMSE_euclidean_distance.py,` we compute an eco_index score based on the Euclidean distance from each (dom, request, size) point to the origin, namely (0, 0, 0). This is the most trivial definition we can put in place to bypass the quantiles and the weights. Our implementation considers that the point with the smallest distance to the origin has an eco_index score of 100, and the point with the greatest distance to the origin has an eco_index score of 100. Note that the input dataset does not contain the outliers we compute with the Scikit-learn iForest implementation. Indeed, we noticed, for instance, that the original dataset contains size components of high values. This fact induces that many eco_index scores are above 99.5 since the distance of all these corresponding points is low compared to the distance of a high value for the size component. Figure 1 presents an example of a dataset after eliminating the outliers.
 
 <span style="display: flex; flex-direction: column;">
 <figure>
@@ -117,7 +119,7 @@ We used a 3-d virtual space of 512 random 3d points
 </span>
 
 
-- In the file `ComputeRMSE.py,` we explore the `url_4ecoindex_dataset.csv` dataset, normalized with the weights (3, 2, 1) to align with the historical EcoIndex, and compute the RMSE (Root Mean Square Error) when considering the historical EcoIndex, and the one obtained through an LSH technique (Random projection method). For that purpose, we ported to Python 3  one existing LSH library and added some functionalities. See the comments in the source file. A sample of the result for the execution of this code is:
+- In the file `ComputeRMSE.py,` we explore the `url_4ecoindex_dataset.csv` dataset, normalized with the weights (3, 2, 1) to align with the historical eco_index, and compute the RMSE (Root Mean Square Error) when considering the historical eco_index, and the one obtained through an LSH technique (Random projection method). For that purpose, we ported to Python 3  one existing LSH library and added some functionalities. See the comments in the source file. A sample of the result for the execution of this code is:
 ```
 $ python ComputeRMSE.py
 ========= READING DATASET ================
@@ -127,7 +129,7 @@ Min Root Mean Square Error: 22.115934637232897
 Max Root Mean Square Error: 65.88938579204769
 ```
 
-Anyway, please, read first the headers of Python programs for usage. You may also play with some internal variables. This is the case for the `ComputeRMSE*.py` files that compute the Root Mean Square Error (RMSE)  between the historical EcoIndex values and the other methods (also known as lsh-knn, random projection, and collinearity). File `ComputeRMSE_other.py` compute the RMSE for the new methods only. Here is an example of the execution of this program:
+Anyway, please, read first the headers of Python programs for usage. You may also play with some internal variables. This is the case for the `ComputeRMSE*.py` files that compute the Root Mean Square Error (RMSE)  between the historical eco_index values and the other methods (also known as lsh-knn, random projection, and collinearity). File `ComputeRMSE_other.py` compute the RMSE for the new methods only. Here is an example of the execution of this program:
 
 ```
 $ python ComputeRMSE_other.py
@@ -158,11 +160,11 @@ Otherwise, you can use the provided ones. Check with the source code because thi
 
 ## Analysis of the dataset
 
-File `analysis_mj.ipynb` corresponds to a Jupyter notebook analyzing data over file `url_4ecoindex_dataset.csv`. It aims to check how different the new EcoIndex and the historical EcoIndex, faced quantiles updates. Visualization helps to quantify the differences throughout multiple techniques and metrics. File `analysis_mj.pdf` is the generated PDF file obtained after running the analysis.
+File `analysis_mj.ipynb` corresponds to a Jupyter notebook analyzing data over file `url_4ecoindex_dataset.csv`. It aims to check how different the new eco_index and the historical eco_index, faced quantiles updates. Visualization helps to quantify the differences throughout multiple techniques and metrics. File `analysis_mj.pdf` is the generated PDF file obtained after running the analysis.
 
 ## Self-Organizing Map (SOM)
 
-File `som_test1.py` generates a PNG image corresponding to a self-organizing map. SOM is used in the exploration phase, and it clusters data. The dataset used in this example is `som_dataset.csv`, built from ARCEP (`2022_QoS_Metropole_data_habitations.csv`) and ENEDIS (`consommation-electrique-par-secteur-dactivite-commune.csv` ; `production-electrique-par-filiere-a-la-maille-commune.csv`) datasets. Some data from these datasets are combined with EcoIndex data (DOM, request, size...) for the URL. This example aims to demonstrate that we can deal with more than 10 energy-related attributes. Check with the header of `som_dataset.csv` to appreciate the metrics we deal with, and also with ARCEP and ENEDIS for their open data (`https://data.enedis.fr/explore/dataset/consommation-electrique-par-secteur-dactivite-commune/export/`; `https://data.enedis.fr/explore/dataset/production-electrique-par-filiere-a-la-maille-commune/export/?sort=annee` and `https://files.data.gouv.fr/arcep_donnees/mobile/mesures_qualite_arcep/2022/Metropole/`). In detail, the attributes are:
+File `som_test1.py` generates a PNG image corresponding to a self-organizing map. SOM is used in the exploration phase, and it clusters data. The dataset used in this example is `som_dataset.csv`, built from ARCEP (`2022_QoS_Metropole_data_habitations.csv`) and ENEDIS (`consommation-electrique-par-secteur-dactivite-commune.csv` ; `production-electrique-par-filiere-a-la-maille-commune.csv`) datasets. Some data from these datasets are combined with eco_index data (DOM, request, size...) for the URL. This example aims to demonstrate that we can deal with more than 10 energy-related attributes. Check with the header of `som_dataset.csv` to appreciate the metrics we deal with, and also with ARCEP and ENEDIS for their open data (`https://data.enedis.fr/explore/dataset/consommation-electrique-par-secteur-dactivite-commune/export/`; `https://data.enedis.fr/explore/dataset/production-electrique-par-filiere-a-la-maille-commune/export/?sort=annee` and `https://files.data.gouv.fr/arcep_donnees/mobile/mesures_qualite_arcep/2022/Metropole/`). In detail, the attributes are:
 ```
 === Reading ARCEP data from data/2022_QoS_Metropole_data_habitations.csv ===
 Column names of ARCEP data:
@@ -297,7 +299,7 @@ dtypes: float64(12), int64(4), object(9)
 memory usage: 8.6+ MB
 ```
 
-The following CSV files contain data issued from ARCEP, ENEDIS, and coming from the EcoIndex computation: `som_dataset.csv, som1.csv`. The exploitation of these two datasets is done with `som.py, som_test1.py`, respectively. Note that `som_test1.py` deals with categorial data (operator, city, and URL) and builds maps, i.e., a clustering and a U-matrix. Note also that the Python codes generate PNG images. All of these implementations come in the context of exploring datasets related to the environmental impact of HTTP requests.
+The following CSV files contain data issued from ARCEP, ENEDIS, and coming from the eco_index computation: `som_dataset.csv, som1.csv`. The exploitation of these two datasets is done with `som.py, som_test1.py`, respectively. Note that `som_test1.py` deals with categorial data (operator, city, and URL) and builds maps, i.e., a clustering and a U-matrix. Note also that the Python codes generate PNG images. All of these implementations come in the context of exploring datasets related to the environmental impact of HTTP requests.
 
 ## Computing the energy and emissions of the new methods
 
@@ -322,7 +324,7 @@ Files `codecarbon_*.py` compute the energy and emissions of our new methods over
                   Nazmus Sakib and
                   Ryohei Banno and
                   Sheikh Iqbal Ahamed},
-  title        = {The EcoIndex metric, reviewed from the perspective of Data Science
+  title        = {The eco_index metric, reviewed from the perspective of Data Science
                   techniques},
   booktitle    = {47th {IEEE} Annual Computers, Software, and Applications Conference,
                   {COMPSAC} 2023, Torino, Italy, June 26-30, 2023},

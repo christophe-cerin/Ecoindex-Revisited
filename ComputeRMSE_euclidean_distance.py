@@ -9,7 +9,7 @@ import timeit
 
 # Boolean indicating if we generate a CSV format or not.
 # In this last case we print the RMSE between the historical
-# EcoIndex and the one computed with the 'colinearity method'.
+# eco_index and the one computed with the 'colinearity method'.
 myCSV = False
 
 # Nomber of lines to read in the input csv files
@@ -19,7 +19,7 @@ my_nrows = 102000
 if not myCSV:
     print('========= READING DATASET ============')
 
-som_dataset = pd.read_csv('url_4ecoindex_dataset.csv',sep=';',encoding='utf-8',usecols=['dom', 'request', 'size','EcoIndex'],low_memory=False,nrows=my_nrows)
+som_dataset = pd.read_csv('url_4ecoindex_dataset.csv',sep=';',encoding='utf-8',usecols=['dom', 'request', 'size','eco_index'],low_memory=False,nrows=my_nrows)
 # normalize the 3rd column => divide by 1024 to convert it in KB
 v = np.array([1,1,1024,1])
 som_dataset = som_dataset / v
@@ -47,7 +47,7 @@ my_nrows, ncols = som_dataset.shape
 #
 # We keep a copy
 #
-historical = som_dataset['EcoIndex']
+historical = som_dataset['eco_index']
 
 if not myCSV:
     print('========= END READING ================')
@@ -60,14 +60,14 @@ t1 = timeit.default_timer()
 p = [0, 0, 0]
 my_max = som_dataset.max(axis=0)
 
-def myDistanceEuclidienneMax(b,l):
+def my_distance_euclidienne_max(b,l):
     return sum([(a-b)**2 for a,b in zip(b,l)])
 
-lower, upper = 0, myDistanceEuclidienneMax(p,[my_max['dom'],my_max['request'],my_max['size']])
+lower, upper = 0, my_distance_euclidienne_max(p,[my_max['dom'],my_max['request'],my_max['size']])
 
 #print(lower,upper,[my_max['dom'],my_max['request'],my_max['size']])
 
-def myDistanceEuclidienne(b,l):
+def my_distance_euclidienne(b,l):
     d = sum([(a-b)**2 for a,b in zip(b,l)])
     return [100*(x / (lower + (upper - lower))) for x in [d]][0]
 
@@ -91,7 +91,7 @@ for x,y in zip(som_dataset.values,historical.to_numpy()):
         y_predicted = []
  
         query = [x[0],x[1],x[2]]
-        i = 100.0 - myDistanceEuclidienne(p,query)
+        i = 100.0 - my_distance_euclidienne(p,query)
 
         y_actual.append(y)
         y_predicted.append(i)

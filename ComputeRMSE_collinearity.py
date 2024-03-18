@@ -24,7 +24,7 @@ __status__ = "Experimental"
 
 # Boolean indicating if we generate a CSV format or not.
 # In this last case we print the RMSE between the historical
-# EcoIndex and the one computed with the 'colinearity method'.
+# eco_index and the one computed with the 'colinearity method'.
 myCSV = False
 
 # Nomber of lines to read in the input csv files
@@ -42,7 +42,7 @@ my_nrows = 150
 
 # Function to check if two given
 # vectors are collinear or not
-def ComputeCollinearity(x1, y1, z1, x2, y2, z2):
+def compute_collinearity(x1, y1, z1, x2, y2, z2):
      
     # Store the first and second vectors
     A = [x1, y1, z1]
@@ -124,7 +124,7 @@ def make_cubes(dataset,dim,res):
 if not myCSV:        
     print('========= READING DATASET ================')
 
-som_dataset = pd.read_csv('url_4ecoindex_dataset.csv',sep=';',encoding='utf-8',usecols=['dom', 'request', 'size', 'EcoIndex'],low_memory=False,nrows=my_nrows)
+som_dataset = pd.read_csv('url_4ecoindex_dataset.csv',sep=';',encoding='utf-8',usecols=['dom', 'request', 'size', 'eco_index'],low_memory=False,nrows=my_nrows)
 # normalize the 3rd column => divide by 1024 to convert it in KB
 v = np.array([1,1,1024,1])
 som_dataset = som_dataset / v
@@ -186,7 +186,7 @@ for foo in range(1,2):
     for my_query in zip(som_dataset):
 
         #
-        # build the request we are looking for the ecoindex
+        # build the request we are looking for the eco_index
         #
         known = my_query[0][3]
         dom = my_query[0][0] ; weight_dom = 1; request = my_query[0][1] ; weight_request = 1; size = my_query[0][2] ; weight_size = 1
@@ -200,7 +200,7 @@ for foo in range(1,2):
         res = []
         dd = {}
         for i in dataset_bak:
-            res1 = ComputeCollinearity(query_norm[0][0], query_norm[0][1], query_norm[0][2],i[0], i[1], i[2])
+            res1 = compute_collinearity(query_norm[0][0], query_norm[0][1], query_norm[0][2],i[0], i[1], i[2])
             dd[tuple(res1)] = i
             res = res + [res1]
 
@@ -230,7 +230,7 @@ for foo in range(1,2):
         if myCSV:
             print(dom * weight_dom,';', request * weight_request,';', size * weight_size,'; {:.2f}'.format(known),'; {:.2f}'.format(predicted))
         #else:
-        #    print('Predicted EcoIndex: {:.2f}'.format(predicted),'; Historical EcoIndex:{:.2f}'.format(known))
+        #    print('Predicted eco_index: {:.2f}'.format(predicted),'; Historical eco_index:{:.2f}'.format(known))
 
         #print('We used a 3-d virtual space of',len(res),'random 3d points')
 

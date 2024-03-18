@@ -18,7 +18,7 @@ __status__ = "Experimental"
 
 # Boolean indicating if we generate a CSV format or not.
 # In this last case we print the RMSE between the historical
-# EcoIndex and the one computed with the 'colinearity method'.
+# eco_index and the one computed with the 'colinearity method'.
 myCSV = False
 
 # Nomber of lines to read in the input csv files
@@ -38,7 +38,7 @@ my_nrows = 15000
 if not myCSV:
     print('========= READING DATASET ============')
 
-som_dataset = pd.read_csv('url_4ecoindex_dataset.csv',sep=';',encoding='utf-8',usecols=['dom', 'request', 'size','EcoIndex'],low_memory=False,nrows=my_nrows)
+som_dataset = pd.read_csv('url_4ecoindex_dataset.csv',sep=';',encoding='utf-8',usecols=['dom', 'request', 'size','eco_index'],low_memory=False,nrows=my_nrows)
 # normalize the 3rd column => divide by 1024 to convert it in KB
 v = np.array([1,1,1024,1])
 som_dataset = som_dataset / v
@@ -48,8 +48,8 @@ som_dataset = som_dataset[(som_dataset['dom'] > 0) & (som_dataset['request'] > 0
 # Update my_nrows
 my_nrows, ncols = som_dataset.shape
 
-# Keep historical EcoIndex values
-historical = som_dataset['EcoIndex']
+# Keep historical eco_index values
+historical = som_dataset['eco_index']
 
 if not myCSV:
     print('========= END READING ================')
@@ -82,7 +82,7 @@ for x,y in zip(som_dataset.values,historical.to_numpy()):
             #myList = query.tolist()
             #myList = [int(x) for x in myList]
             predicted = (int(i,2)/math.pow(2,nb_bits))*100.0
-            #print('Bucket id:',int(i,2),'for input:',myList,'EcoIndex LSH:',predicted,'Hitorical:',y[0])
+            #print('Bucket id:',int(i,2),'for input:',myList,'eco_index LSH:',predicted,'Hitorical:',y[0])
             y_actual.append(y)
             y_predicted.append((int(i,2)/math.pow(2,nb_bits))*100.0)
 

@@ -27,8 +27,7 @@ __status__ = "Experimental"
 
 # Function to check if two given
 # vectors are collinear or not
-def ComputeCollinearity(x1, y1, z1, x2, y2, z2):
-     
+def compute_collinearity(x1, y1, z1, x2, y2, z2):
     # Store the first and second vectors
     A = [x1, y1, z1]
     B = [x2, y2, z2]
@@ -185,7 +184,7 @@ if __name__ == '__main__':
     for dom, request, size in input_dataset:
     
         #
-        # build the request we are looking for the ecoindex
+        # build the request we are looking for the eco_index
         #
         query = [ dom * weight_dom, request * weight_request, size * weight_size]
         query_norm = query
@@ -198,7 +197,7 @@ if __name__ == '__main__':
         res = []
         dd = {}
         for i in dataset_bak:
-            res1 = ComputeCollinearity(query_norm[0][0], query_norm[0][1], query_norm[0][2],i[0], i[1], i[2])
+            res1 = compute_collinearity(query_norm[0][0], query_norm[0][1], query_norm[0][2],i[0], i[1], i[2])
             dd[tuple(res1)] = i
             res = res + [res1]
         #print(res)
@@ -227,7 +226,7 @@ if __name__ == '__main__':
             z += pool[2]
         centroid = [x/K,y/K,z/K]
         #print('Final centroid:',centroid)
-        #print('EcoIndex: {:.2f}'.format(100 - 100*sum(centroid)/dataset_copy.max()/3))
+        #print('eco_index: {:.2f}'.format(100 - 100*sum(centroid)/dataset_copy.max()/3))
     
         t2 = timeit.default_timer()
 

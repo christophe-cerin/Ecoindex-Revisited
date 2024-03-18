@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Example file to illustrate the EcoIndex Computation through
+Example file to illustrate the eco_index Computation through
 the Random Projection Method.
 
 $ python3 random_projection.py
@@ -141,7 +141,7 @@ plane_norms = np.asarray([[ 0.2251249 ,  0.14437926,  0.3455753 ],
 #print('Plane-norms: ',plane_norms)
 #print('Transpose: ',plane_norms.T)
 
-def computeEcoIndex_Random_Projection(dom,req,size):
+def compute_eco_index_random_projection(dom,req,size):
     nbits = 16
     a = np.asarray([dom, req, size])
     a_dot = np.dot(a, plane_norms.T)
@@ -163,7 +163,7 @@ if __name__ == "__main__":
 
     if len(sys.argv) != 1:
         print("Bad number of argument. Require no parameter!")
-        print('usage: python3 codecarbon_test_ecoindex_bis.py')
+        print('usage: python3 codecarbon_test_eco_index_bis.py')
         exit()
 
     # Number of rows to read in the dataset
@@ -187,7 +187,7 @@ if __name__ == "__main__":
 
     for dom, req, size in dataset:
         #print(dom,req,size)
-        eco_lsh = computeEcoIndex_Random_Projection(dom,req,size)
+        eco_lsh = compute_eco_index_random_projection(dom,req,size)
 
     # stop codecarbon
     emissions: float = tracker.stop()

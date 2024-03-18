@@ -1,4 +1,4 @@
-operateur;latitude;longitude;CP;ville;url;dom;req;size;EcoIndex;GreenHouseGaz;water;PageChargeeMoins5s;temps_en_secondes;Conso_totale_(MWh);Conso_moyenne_(MWh);Photovoltaique
+operateur;latitude;longitude;CP;ville;url;dom;req;size;eco_index;GreenHouseGaz;water;PageChargeeMoins5s;temps_en_secondes;Conso_totale_(MWh);Conso_moyenne_(MWh);Photovoltaique
 SFR;48.76023;2.31288;92002;ANTONY;https://www.index-education.com/fr/;356;54;4810382;59.36;1.81;2.7;1.0;3.07;123490.33574975994;4.114561548321059;201.32801279188027
 FREE;46.68187;-1.04778;85145;LA ROCHE-SUR-YON;https://www.spotify.com/fr/;82;37;7946607;71.75;1.56;2.3;1.0;2.1;3049.9677768536567;6.900379585641757;309.944
 FREE;46.11088;-1.10363;17010;LA ROCHELLE;https://www.spotify.com/fr/;82;37;7946607;71.75;1.56;2.3;1.0;2.26;13920.05566151677;6.189442268348941;64.504

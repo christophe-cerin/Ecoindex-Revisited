@@ -9,7 +9,7 @@
 # Usage:
 """
 import sys
-sys.path.append('/home/cerin/EcoIndex/LSHash/lshash')
+sys.path.append('/home/cerin/eco_index/LSHash/lshash')
 from lshash import *
 from storage import *
 

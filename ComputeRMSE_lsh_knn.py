@@ -20,7 +20,7 @@ __status__ = "Experimental"
 
 # Boolean indicating if we generate a CSV format or not.
 # In this last case we print the RMSE between the historical
-# EcoIndex and the one computed with the 'colinearity method'.
+# eco_index and the one computed with the 'colinearity method'.
 myCSV = False
 
 # number of rows to read in the input csv files
@@ -55,7 +55,7 @@ dataset_copy = np.copy(dataset)
 if not myCSV:
     print('========= READING DATASET ================')
 
-som_dataset = pd.read_csv('url_4ecoindex_dataset.csv',sep=';',encoding='utf-8',usecols=['dom', 'request', 'size','EcoIndex'],low_memory=False,nrows=my_nrows)
+som_dataset = pd.read_csv('url_4ecoindex_dataset.csv',sep=';',encoding='utf-8',usecols=['dom', 'request', 'size','eco_index'],low_memory=False,nrows=my_nrows)
 # normalize the 3rd column => divide by 1024 to convert it in KB
 v = np.array([1,1,1024,1])
 som_dataset = som_dataset / v
@@ -65,8 +65,8 @@ som_dataset = som_dataset[(som_dataset['dom'] > 0) & (som_dataset['request'] > 0
 # update my_nrows
 my_nrows, ncols = som_dataset.shape
 
-# Keep historical EcoIndex values
-historical = som_dataset['EcoIndex']
+# Keep historical eco_index values
+historical = som_dataset['eco_index']
 #
 # Convert the dataset to a numpy array
 #
@@ -202,7 +202,7 @@ for foo in range(1,2):
                 predicted = 100 - 100*sum(centroid)/dataset_copy.max()/3 #sum(centroid)/3
                 #print(sum(centroid),dataset_copy.max(),100*sum(centroid)/N/3)
 
-                #print('EcoIndex: {:.2f}'.format(100 - 100*sum(centroid)/dataset_copy.max()/3),'; Historical EcoIndex : {:.2f}'.format(known))
+                #print('eco_index: {:.2f}'.format(100 - 100*sum(centroid)/dataset_copy.max()/3),'; Historical eco_index : {:.2f}'.format(known))
                 if myCSV:
                     print(x[0],';',x[1],';',x[2],'; {:.2f}'.format(known),'; {:.2f}'.format(100 - 100*sum(centroid)/dataset_copy.max()/3))
                 y_actual.append(known)

@@ -186,9 +186,9 @@ for row in df.itertuples(index=False):
         current_item_conso = dff[dff['Code Commune'] == int(gdf.at[0,'insee_com'])]
         if current_item_conso.empty:
             continue
-        ConsoTotale  = current_item_conso.iloc[0]['Conso totale (MWh)']
-        ConsoMoyenne = current_item_conso.iloc[0]['Conso moyenne (MWh)']
-        #print('Conso Totale:',ConsoTotale,' <==> Conso Moyenne:',ConsoMoyenne)
+        conso_totale  = current_item_conso.iloc[0]['Conso totale (MWh)']
+        conso_moyenne = current_item_conso.iloc[0]['Conso moyenne (MWh)']
+        #print('Conso Totale:',conso_totale,' <==> Conso Moyenne:',conso_moyenne)
 
         # Explore the ENEDIS DATA (production)
         #print(dffd.info())
@@ -207,18 +207,18 @@ for row in df.itertuples(index=False):
 
         # Analyse the URL
         if type(row[10]) is str:
-            result = subprocess.run(['python3', 'test_ecoindex.py', row[10]], stdout=subprocess.PIPE)
-            #print('EcoIndex:',result.stdout.decode('utf-8'))
+            result = subprocess.run(['python3', 'test_eco_index.py', row[10]], stdout=subprocess.PIPE)
+            #print('eco_index:',result.stdout.decode('utf-8'))
 
-            #if type(row[4].upper()) is str and type(row[7]) is str and type(row[8]) is str and type(gdf.at[0+'insee_com']) is str and type(ville) is str and type(result.stdout.decode('utf-8')) is str and type(row[18]) is str and type(row[23]) is str and type(ConsoTotale) is str and type(ConsoMoyenne) is str and type(ProdA) is str:
-            #    mystr = row[4].upper()+';'+row[7]+';'+row[8]+';'+gdf.at[0+'insee_com']+';'+ville+';'+result.stdout.decode('utf-8')+';'+row[18]+';'+row[23]+';'+ConsoTotale+';'+ConsoMoyenne+';'+ProdA
+            #if type(row[4].upper()) is str and type(row[7]) is str and type(row[8]) is str and type(gdf.at[0+'insee_com']) is str and type(ville) is str and type(result.stdout.decode('utf-8')) is str and type(row[18]) is str and type(row[23]) is str and type(conso_totale) is str and type(conso_moyenne) is str and type(ProdA) is str:
+            #    mystr = row[4].upper()+';'+row[7]+';'+row[8]+';'+gdf.at[0+'insee_com']+';'+ville+';'+result.stdout.decode('utf-8')+';'+row[18]+';'+row[23]+';'+conso_totale+';'+conso_moyenne+';'+ProdA
             #   print(mystr)
             #else:
-            #    print('=====>',type(row[4].upper()),type(row[7]),type(row[8]),type(ville),type(result.stdout.decode('utf-8')), type(row[18]), type(row[23]), type(ConsoTotale),type(ConsoMoyenne), type(ProdA))
+            #    print('=====>',type(row[4].upper()),type(row[7]),type(row[8]),type(ville),type(result.stdout.decode('utf-8')), type(row[18]), type(row[23]), type(conso_totale),type(conso_moyenne), type(ProdA))
             my_res = result.stdout.decode('utf-8')
             my_res = my_res[0:len(my_res)-2]
-            if my_res and not math.isnan(float(str(row[18]).replace(',','.'))) and not math.isnan(float(row[23].replace(',','.'))) and not math.isnan(float(ConsoTotale)) and not math.isnan(float(ConsoMoyenne)) and not math.isnan(float(ProdA)) :
-                print(row[4].upper(),';',row[7],';',row[8],';',gdf.at[0,'insee_com'],';',ville,';',my_res,';',str(row[18]).replace(',','.'),';',row[23].replace(',','.'),';',ConsoTotale,';',ConsoMoyenne,';',ProdA,sep='')
+            if my_res and not math.isnan(float(str(row[18]).replace(',','.'))) and not math.isnan(float(row[23].replace(',','.'))) and not math.isnan(float(conso_totale)) and not math.isnan(float(conso_moyenne)) and not math.isnan(float(ProdA)) :
+                print(row[4].upper(),';',row[7],';',row[8],';',gdf.at[0,'insee_com'],';',ville,';',my_res,';',str(row[18]).replace(',','.'),';',row[23].replace(',','.'),';',conso_totale,';',conso_moyenne,';',ProdA,sep='')
         else:
             print('ERROR in subprocess')
     else:

@@ -1,4 +1,4 @@
-operateur,latitude,longitude,CP,ville,url,dom,size,requests,EcoIndex,GreenHouseGaz,water,PageChargeeMoins10s,temps_en_secondes,Conso totale (MWh),Conso moyenne (MWh),Photovoltaique,Eolien,Hydraulique,Bio energy,Cogeneration,Autres
+operateur,latitude,longitude,CP,ville,url,dom,size,requests,eco_index,GreenHouseGaz,water,PageChargeeMoins10s,temps_en_secondes,Conso totale (MWh),Conso moyenne (MWh),Photovoltaique,Eolien,Hydraulique,Bio energy,Cogeneration,Autres
 BOUYGUES TELECOM , 47.8425 , 1.91621 ,45006, ORLÉANS , https://www.ubereats.com/fr ,628,127,9399780, 33.67 , 2.33 , 3.4 , 1.0 , 7.2 , 6048.326990688309 , 9.305118447212784 , 0.0, 0.0 , 0.0 , 0.0 , 0.0 , 0.0
 ORANGE , 47.95425 , 1.89201 ,45302, ORLÉANS , https://www.instagram.com/accounts/login/ ,178,95,29040676, 55.95 , 1.88 , 2.82 , 1.0 , 4.42 , 33205.82879245754 , 4.659813190072628 , 202.4281508162772 , 0.0 , 0.0 , 0.0 , 0.0 , 0.0
 ORANGE , 47.42255 , 2.05196 ,41249, ROMORANTIN-LANTHENAY , https://www.instagram.com/accounts/login/ ,178,95,29040190, 55.95 , 1.88 , 2.82 , 1.0 , 3.08 , 4927.959401108171 , 6.358657291752479 , 18.110331994915576 , 0.0 , 0.0 , 0.0 , 0.0 , 0.0

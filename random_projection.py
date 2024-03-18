@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Example file to illustrate the EcoIndex Computation through
+Example file to illustrate the eco_index Computation through
 the Random Projection Method.
 
 $ python3 random_projection.py
@@ -176,7 +176,7 @@ for i in range(len(vectors)):
 #for key, value in buckets.items():
 #    print('key: ',int(key,2),' ; --> ',value,' ; rank --> ',100.0 * int(key,2)/(math.pow(2,nbits)-1))
 
-def computeEcoIndex_Random_Projection(dom,req,size):
+def compute_eco_index_random_projection(dom,req,size):
     a = np.asarray([dom, req, size])
     a_dot = np.dot(a, plane_norms.T)
     a_dot = a_dot > 0
@@ -193,15 +193,15 @@ def computeEcoIndex_Random_Projection(dom,req,size):
 #Number of http requests:  12
 #+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 #URL:                                       http://www.google.com
-#EcoIndex:                                  92.19
-#EcoIndex Grade:                            A
-#Greenhouse Gases Emission from EcoIndex:   1.16  (gCO2e)
-#Water Consumption from EcoIndex:           1.73  (cl)
+#eco_index:                                  92.19
+#eco_index Grade:                            A
+#Greenhouse Gases Emission from eco_index:   1.16  (gCO2e)
+#Water Consumption from eco_index:           1.73  (cl)
 #+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-#print('EcoIndex with LSH method: ',computeEcoIndex_Random_Projection(63,12,19192/1024))
-# EcoIndex with LSH method:  4.51262064848855
-#print('EcoIndex with LSH method: ',computeEcoIndex_Random_Projection(3*63,2*12,19192/1024))
-# EcoIndex with LSH method:  4.51262064848855
+#print('eco_index with LSH method: ',compute_eco_index_random_projection(63,12,19192/1024))
+# eco_index with LSH method:  4.51262064848855
+#print('eco_index with LSH method: ',compute_eco_index_random_projection(3*63,2*12,19192/1024))
+# eco_index with LSH method:  4.51262064848855
 
 
 
@@ -211,15 +211,15 @@ def computeEcoIndex_Random_Projection(dom,req,size):
 #Number of http requests:  57
 #+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 #URL:                                       https://www.pinecone.io/learn/locality-sensitive-hashing-random-projection/
-#EcoIndex:                                  54.91
-#EcoIndex Grade:                            D
-#Greenhouse Gases Emission from EcoIndex:   1.90  (gCO2e)
-#Water Consumption from EcoIndex:           2.85  (cl)
+#eco_index:                                  54.91
+#eco_index Grade:                            D
+#Greenhouse Gases Emission from eco_index:   1.90  (gCO2e)
+#Water Consumption from eco_index:           2.85  (cl)
 #+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-#print('EcoIndex with LSH method: ',computeEcoIndex_Random_Projection(532,57,2215354/1024))
-# EcoIndex with LSH method:  95.48737935151145
-#print('EcoIndex with LSH method: ',computeEcoIndex_Random_Projection(3*532,2*57,2215354/1024))
-# EcoIndex with LSH method:  88.85304147583736
+#print('eco_index with LSH method: ',compute_eco_index_random_projection(532,57,2215354/1024))
+# eco_index with LSH method:  95.48737935151145
+#print('eco_index with LSH method: ',compute_eco_index_random_projection(3*532,2*57,2215354/1024))
+# eco_index with LSH method:  88.85304147583736
 
 #import numpy as np
 #from sklearn import random_projection
@@ -231,20 +231,33 @@ def computeEcoIndex_Random_Projection(dom,req,size):
 #(100, 3947)
 
 #
-# Calcul ecoIndex based on formula from web site www.ecoindex.fr
+# Calcul eco_index based on formula from web site www.eco_index.fr
 #
 
-quantiles_dom = [0, 47, 75, 159, 233, 298, 358, 417, 476, 537, 603, 674, 753, 843, 949, 1076, 1237, 1459, 1801, 2479, 594601]
-quantiles_req = [0, 2, 15, 25, 34, 42, 49, 56, 63, 70, 78, 86, 95, 105, 117, 130, 147, 170, 205, 281, 3920]
-quantiles_size = [0, 1.37, 144.7, 319.53, 479.46, 631.97, 783.38, 937.91, 1098.62, 1265.47, 1448.32, 1648.27, 1876.08, 2142.06, 2465.37, 2866.31, 3401.59, 4155.73, 5400.08, 8037.54, 223212.26]
+quantiles_dom = [
+    0, 47, 75, 159, 233, 298, 358,
+    417, 476, 537, 603, 674, 753, 843,
+    949, 1076, 1237, 1459, 1801, 2479, 594601
+]
+quantiles_req = [
+    0, 2, 15, 25, 34, 42, 49,
+    56, 63, 70, 78, 86, 95, 105,
+    117, 130, 147, 170, 205, 281, 3920
+]
 
-def computeEcoIndex(dom,req,size):
-    q_dom = computeQuantile(quantiles_dom,dom)
-    q_req = computeQuantile(quantiles_req,req)
-    q_size= computeQuantile(quantiles_size,size)
+quantiles_size = [
+    0, 1.37, 144.7, 319.53, 479.46, 631.97, 783.38, 937.91,
+    1098.62, 1265.47, 1448.32, 1648.27, 1876.08, 2142.06, 2465.37, 
+    2866.31, 3401.59, 4155.73, 5400.08, 8037.54, 223212.26
+]
+
+def compute_eco_index(dom,req,size):
+    q_dom = compute_quantile(quantiles_dom,dom)
+    q_req = compute_quantile(quantiles_req,req)
+    q_size= compute_quantile(quantiles_size,size)
     return 100 - 5 * (3*q_dom + 2*q_req + q_size)/6
            
-def computeQuantile(quantiles,value):
+def compute_quantile(quantiles,value):
     for i in range(1,len(quantiles)):
         if value < quantiles[i]:
             return (i -1 + (value-quantiles[i-1])/(quantiles[i] -quantiles[i-1]))
@@ -255,9 +268,9 @@ sample_data = np.random.randint(size = (15,3), low = [20,10,1000], high = [50,30
 #sample_data = np.random.randint(size = (15,3), low = [63,14, 22200], high = [64,15,22300])
 
 for i in sample_data:
-    eco = computeEcoIndex(i[0],i[1],i[2]/1024)
-    eco_lsh = computeEcoIndex_Random_Projection(i[0],i[1],i[2])
-    print(i,' EcoIndex: ',eco,' EcoIndex_Random_Projection: ',eco_lsh,' Diff: ',eco - eco_lsh)
+    eco = compute_eco_index(i[0],i[1],i[2]/1024)
+    eco_lsh = compute_eco_index_random_projection(i[0],i[1],i[2])
+    print(i,' eco_index: ',eco,' eco_index_Random_Projection: ',eco_lsh,' Diff: ',eco - eco_lsh)
 
 
 def centroid_computation(arr):

@@ -9,7 +9,7 @@
 # Usage:
 """
 import sys
-sys.path.append('/home/cerin/EcoIndex/LSHash/lshash')
+sys.path.append('/home/cerin/eco_index/LSHash/lshash')
 from lshash import *
 from storage import *
 
@@ -56,7 +56,7 @@ except ImportError:
     bitarray = None
 
 
-class LSHash(object):
+class LSHash(object): 
     """ LSHash implments locality sensitive hashing using random projection for
     input vectors of dimension `input_dim`.
 
@@ -123,13 +123,13 @@ class LSHash(object):
             file_exist = os.path.isfile(self.matrices_filename)
             if file_exist and not self.overwrite:
                 try:
-                    npzfiles = np.load(self.matrices_filename)
+                    npz_files = np.load(self.matrices_filename)
                 except IOError:
                     print("Cannot load specified file as a numpy array")
                     raise
                 else:
-                    npzfiles = sorted(npzfiles.items(), key=lambda x: x[0])
-                    self.uniform_planes = [t[1] for t in npzfiles]
+                    npz_files = sorted(npz_files.items(), key=lambda x: x[0])
+                    self.uniform_planes = [t[1] for t in npz_files]
             else:
                 self.uniform_planes = [self._generate_uniform_planes()
                                        for _ in range(self.num_hashtables)]

@@ -162,9 +162,9 @@ for row in df.itertuples(index=False):
         current_item_conso = dff[dff['Code Commune'] == int(gdf.at[0,'insee_com'])]
         if current_item_conso.empty:
             continue
-        ConsoTotale  = current_item_conso.iloc[0]['Conso totale (MWh)']
-        ConsoMoyenne = current_item_conso.iloc[0]['Conso moyenne (MWh)']
-        #print('Conso Totale:',ConsoTotale,' <==> Conso Moyenne:',ConsoMoyenne)
+        conso_totale  = current_item_conso.iloc[0]['Conso totale (MWh)']
+        conso_moyenne = current_item_conso.iloc[0]['Conso moyenne (MWh)']
+        #print('Conso Totale:',conso_totale,' <==> Conso Moyenne:',conso_moyenne)
 
         # Explore the ENEDIS DATA (production)
         #print(dffd.info())
@@ -182,10 +182,10 @@ for row in df.itertuples(index=False):
         ProdF  = current_item_prod.iloc[0]['Energie produite annuelle Autres filières Enedis (MWh)']
 
         # Analyse the URL
-        result = subprocess.run(['python3', 'test_ecoindex.py', row[10]], stdout=subprocess.PIPE)
+        result = subprocess.run(['python3', 'test_eco_index.py', row[10]], stdout=subprocess.PIPE)
         #print(result.stdout.decode('utf-8'))
         
-        print(row[4].upper(),';',row[7],';',row[8],';',gdf.at[0,'insee_com'],';',ville,';',result.stdout.decode('utf-8'),';',row[18],';',row[23].replace(',','.'),';',ConsoTotale,';',ConsoMoyenne,';',ProdA,';',ProdB,';',ProdC,';',ProdD,';',ProdE,';',ProdF,sep='')
+        print(row[4].upper(),';',row[7],';',row[8],';',gdf.at[0,'insee_com'],';',ville,';',result.stdout.decode('utf-8'),';',row[18],';',row[23].replace(',','.'),';',conso_totale,';',conso_moyenne,';',ProdA,';',ProdB,';',ProdC,';',ProdD,';',ProdE,';',ProdF,sep='')
         #pass
     else:
         print('ERROR: void column')

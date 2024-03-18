@@ -5,7 +5,7 @@
 An example file to illustrate Self Organizing Maps
 on som1.csv. This CSV file contains an
 aggregation of data from ARCEP and ENEDIS and
-computed data (Ecoindex on ARCEP URLs).
+computed data (eco_index on ARCEP URLs).
 
 Usage:
   $ python3 som_test1.py
@@ -51,7 +51,7 @@ except TypeError:
 #
 som_dataset = pd.read_csv('som1.csv',sep=';',encoding='ISO-8859-1',low_memory=False)
 # Extract the 17 colums we are interested in
-som_dataset = som_dataset[['operateur','latitude','longitude','CP','ville','url','dom','req','size','EcoIndex','GreenHouseGaz','water','PageChargeeMoins5s','temps_en_secondes','Conso_totale_(MWh)','Conso_moyenne_(MWh)','Photovoltaique']].to_numpy()
+som_dataset = som_dataset[['operateur','latitude','longitude','CP','ville','url','dom','req','size','eco_index','GreenHouseGaz','water','PageChargeeMoins5s','temps_en_secondes','Conso_totale_(MWh)','Conso_moyenne_(MWh)','Photovoltaique']].to_numpy()
 
 #
 # Replace operator, ville, and url attributes by an hash()

@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """
-Example file to illustrate the EcoIndex Computation through
+Example file to illustrate the eco_index Computation through
 the collinearity method
 
-Usage to compute the EcoIndex for the request (1*3, 1*3, 1*1) with
+Usage to compute the eco_index for the request (1*3, 1*3, 1*1) with
 a virtual space of size 9*9*9
 
 $ python3  collinearity.py 1 1 1 3 3 1 9
@@ -20,7 +20,7 @@ Query          : [3, 3, 1]
 Normalizing the dataset of length: 729
 Dataset normalized
 Final centroid: [2.6296296296296298, 2.6049382716049383, 0.8395061728395061]
-EcoIndex: 97.50
+eco_index: 97.50
 Query time: 0.015776100000948645
 We used a 3-d virtual space of 729 random 3d points
 """
@@ -46,7 +46,7 @@ __status__ = "Experimental"
 
 # Function to check if two given
 # vectors are collinear or not
-def ComputeCollinearity(x1, y1, z1, x2, y2, z2):
+def compute_collinearity(x1, y1, z1, x2, y2, z2):
      
     # Store the first and second vectors
     A = [x1, y1, z1]
@@ -153,7 +153,7 @@ if __name__ == '__main__':
              N1 = int(arg)
 
     #
-    # build th request we are looking for the ecoindex
+    # build th request we are looking for the eco_index
     #
     query = [ dom * weight_dom, request * weight_request, size * weight_size]
     query_norm = query
@@ -211,7 +211,7 @@ if __name__ == '__main__':
     res = []
     dd = {}
     for i in dataset_bak:
-        res1 = ComputeCollinearity(query_norm[0][0], query_norm[0][1], query_norm[0][2],i[0], i[1], i[2])
+        res1 = compute_collinearity(query_norm[0][0], query_norm[0][1], query_norm[0][2],i[0], i[1], i[2])
         dd[tuple(res1)] = i
         res = res + [res1]
     #print(res)
@@ -240,7 +240,7 @@ if __name__ == '__main__':
         z += pool[2]
     centroid = [x/K,y/K,z/K]
     print('Final centroid:',centroid)
-    print('EcoIndex: {:.2f}'.format(100 - 100*sum(centroid)/dataset_copy.max()/3))
+    print('eco_index: {:.2f}'.format(100 - 100*sum(centroid)/dataset_copy.max()/3))
     
     t2 = timeit.default_timer()
 
