@@ -337,6 +337,35 @@ Files `codecarbon_*.py` compute the energy and emissions of our new methods over
   biburl       = {https://dblp.org/rec/conf/compsac/CerinTM23.bib},
   bibsource    = {dblp computer science bibliography, https://dblp.org}
 }
+
+@inproceedings{DBLP:conf/bigdataconf/CerinJLT23,
+  author       = {Christophe C{\'{e}}rin and
+                  Mathilde Jay and
+                  Laurent Lef{\`{e}}vre and
+                  Denis Trystram},
+  editor       = {Jingrui He and
+                  Themis Palpanas and
+                  Xiaohua Hu and
+                  Alfredo Cuzzocrea and
+                  Dejing Dou and
+                  Dominik Slezak and
+                  Wei Wang and
+                  Aleksandra Gruca and
+                  Jerry Chun{-}Wei Lin and
+                  Rakesh Agrawal},
+  title        = {A Methodology and a Toolbox to Explore Dataset related to the Environmental
+                  Impact of {HTTP} Requests},
+  booktitle    = {{IEEE} International Conference on Big Data, BigData 2023, Sorrento,
+                  Italy, December 15-18, 2023},
+  pages        = {3753--3762},
+  publisher    = {{IEEE}},
+  year         = {2023},
+  url          = {https://doi.org/10.1109/BigData59044.2023.10386275},
+  doi          = {10.1109/BIGDATA59044.2023.10386275},
+  timestamp    = {Fri, 02 Feb 2024 12:00:39 +0100},
+  biburl       = {https://dblp.org/rec/conf/bigdataconf/CerinJLT23.bib},
+  bibsource    = {dblp computer science bibliography, https://dblp.org}
+}
 ```
 
 
