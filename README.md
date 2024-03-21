@@ -14,7 +14,7 @@ Indeed, the initial process requires recalculating each quantile according to th
 
  - The `requirements.txt` file serves as a list of items to be installed by `pip` when using pip install. Files that use this format are often called “pip requirements.txt files” since requirements.txt is usually what these files are named (although, that is not a requirement). So, to install the dependencies, run first `pip install -r requirements.txt`;
 
- - `The `config.ini` file allows the `verbose mode` configuration. Manually setting it to a value greater than 1 will result in a comprehensive debugging description included in the output. However, if `verbose` is set to 1 only more basic output will be printed.
+ - The `config.ini` file allows the `verbose mode` configuration. Manually setting it to a value greater than 1 will result in a comprehensive debugging description included in the output. However, if `verbose` is set to 1 only more basic output will be printed.
 
  - `url_4ecoindex_dataset.csv` is a dataset corresponding to more than 100k requests from the HTTParchive (a subset dated April 2022). This CSV file gives the URL, the DOM, the request, and the size collected through the execution of test_eco_index.py on the URL. On the same line, you get the EcoIndex, then the water consumption and the gas emission values;
 - test_eco_index.py implements the original EcoIndex; You get a CSV-like file with the URL, DOM, request, size, Econdex, water consumption, and gas emission;
