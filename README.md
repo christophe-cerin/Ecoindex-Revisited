@@ -12,7 +12,7 @@ Indeed, the initial process requires recalculating each quantile according to th
 
 ## Python codes and dataset explained
 
- - The `requirements.txt file serves as a list of items to be installed by `pip` when using pip install. Files that use this format are often called “pip requirements.txt files” since requirements.txt is usually what these files are named (although, that is not a requirement). So, to install the dependencies, run first `pip install -r requirements.txt`;
+ - The `requirements.txt` file serves as a list of items to be installed by `pip` when using pip install. Files that use this format are often called “pip requirements.txt files” since requirements.txt is usually what these files are named (although, that is not a requirement). So, to install the dependencies, run first `pip install -r requirements.txt`;
 
  - `The `config.ini` file allows the `verbose mode` configuration. Manually setting it to a value greater than 1 will result in a comprehensive debugging description included in the output. However, if `verbose` is set to 1 only more basic output will be printed.
 
