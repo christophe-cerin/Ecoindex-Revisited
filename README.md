@@ -22,7 +22,7 @@ Indeed, the initial process requires recalculating each quantile according to th
 $ python3 test_eco_index.py http://www.google.fr
 http://www.google.fr ; 80 ; 12 ; 19160 ; 90.97 ; 1.18 ; 1.77
 ```
-- ToyExampleEcoindex.py draws random urls and generates a bar picture for the scores. As an example, on Figure 1, we get:
+- `ToyExampleEcoindex.py` draws random urls and generates a bar picture for the scores. As an example, on Figure 1, we get:
 <span style="display: flex; flex-direction: column;">
 <figure>
  <img src="Figures/Figure_toy_example.png" alt="" style="width:50%">
@@ -31,7 +31,7 @@ http://www.google.fr ; 80 ; 12 ; 19160 ; 90.97 ; 1.18 ; 1.77
  </figure>
 <br>&nbsp;<br>
 </span>  
-- random_projection.py implements a random projection method for the EcoIndex. The EcoIndex is given by the rank of the bin receiving the projection. The code generates random samples, and we compute the historical EcoIndex, the new EcoIndex, and then the difference between the two;
+- `random_projection.py` implements a random projection method for the EcoIndex. The EcoIndex is given by the rank of the bin receiving the projection. The code generates random samples, and we compute the historical EcoIndex, the new EcoIndex, and then the difference between the two;
 ```
 $ python3 random_projection.py
 Plane-norms:  [[ 0.2251249   0.14437926  0.3455753 ]
@@ -67,7 +67,7 @@ Plane-norms:  [[ 0.2251249   0.14437926  0.3455753 ]
 [  31   25 7241]  eco_index:  92.48458269614169  eco_index_Random_Projection:  91.8425268940261  Diff:  0.6420558021155927
 x=37.60 y=18.40 z=10874.33
 ```
-- lsh.py implements a Locality Sensitive Hashing (LSH) method for the EcoIndex. We use the Falconn package and select two random queries taken from the input. We search for these two inputs and compute the EcoIndex, according to the LSH method. We first go through the k=3 nearest neighbors, compute the barycenter, and then the EcoIndex; 
+- `lsh.py` implements a Locality Sensitive Hashing (LSH) method for the EcoIndex. We use the Falconn package and select two random queries taken from the input. We search for these two inputs and compute the EcoIndex, according to the LSH method. We first go through the k=3 nearest neighbors, compute the barycenter, and then the EcoIndex; 
 ```
 $ python3 lsh.py
 Normalizing the dataset
@@ -95,7 +95,7 @@ Query time: 2.9719452999997884
 Precision: 1.0
 We considered a space of 11390625 3d points
 ```
--  collinearity.py implements a method considering the most collinear vector points with the query for the EcoIndex metric. First, we isolate candidate points and compute the centroid of these points. The EcoIndex is calculated as a 'relative position' for the centroid in the considered virtual space. The following example shows the query with Dom=1<span>&#215;</span>9, request=1<span>&#215;</span>8, and size=1<span>&#215;</span>15. Parameter 8 corresponds to the virtual space size, i.e., 8<sup>3</sup>=512, meaning we deal with 512 points conceptually.
+-  `collinearity.py` implements a method considering the most collinear vector points with the query for the EcoIndex metric. First, we isolate candidate points and compute the centroid of these points. The EcoIndex is calculated as a 'relative position' for the centroid in the considered virtual space. The following example shows the query with Dom=1<span>&#215;</span>9, request=1<span>&#215;</span>8, and size=1<span>&#215;</span>15. Parameter 8 corresponds to the virtual space size, i.e., 8<sup>3</sup>=512, meaning we deal with 512 points conceptually.
 ```
 $ python3 collinearity.py 1 1 1 9 5 15 8
 Arguments count: 8
