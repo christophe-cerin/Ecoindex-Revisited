@@ -17,12 +17,13 @@ Indeed, the initial process requires recalculating each quantile according to th
  - The `config.ini` file allows the `verbose mode` configuration. Manually setting it to a value greater than 1 will result in a comprehensive debugging description included in the output. However, if `verbose` is set to 1 only more basic output will be printed.
 
  - `url_4ecoindex_dataset.csv` is a dataset corresponding to more than 100k requests from the HTTParchive (a subset dated April 2022). This CSV file gives the URL, the DOM, the request, and the size collected through the execution of test_eco_index.py on the URL. On the same line, you get the EcoIndex, then the water consumption and the gas emission values;
-- test_eco_index.py implements the original EcoIndex; You get a CSV-like file with the URL, DOM, request, size, Econdex, water consumption, and gas emission;
+- `test_eco_index.py` implements the original EcoIndex; You get a CSV-like file with the URL, DOM, request, size, Econdex, water consumption, and gas emission;
 ```
 $ python3 test_eco_index.py http://www.google.fr
 http://www.google.fr ; 80 ; 12 ; 19160 ; 90.97 ; 1.18 ; 1.77
 ```
 - `ToyExampleEcoindex.py` draws random urls and generates a bar picture for the scores. As an example, on Figure 1, we get:
+
 <span style="display: flex; flex-direction: column;">
 <figure>
  <img src="Figures/Figure_toy_example.png" alt="" style="width:50%">
@@ -30,7 +31,8 @@ http://www.google.fr ; 80 ; 12 ; 19160 ; 90.97 ; 1.18 ; 1.77
  <figcaption><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Figure 1: </b> example of scores for the EcoIndex metric</figcaption>
  </figure>
 <br>&nbsp;<br>
-</span>  
+</span>
+
 - `random_projection.py` implements a random projection method for the EcoIndex. The EcoIndex is given by the rank of the bin receiving the projection. The code generates random samples, and we compute the historical EcoIndex, the new EcoIndex, and then the difference between the two;
 ```
 $ python3 random_projection.py
