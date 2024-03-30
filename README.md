@@ -22,6 +22,15 @@ Indeed, the initial process requires recalculating each quantile according to th
 $ python3 test_eco_index.py http://www.google.fr
 http://www.google.fr ; 80 ; 12 ; 19160 ; 90.97 ; 1.18 ; 1.77
 ```
+- ToyExampleEcoindex.py draws random urls and generates a pictures for the scores. As an example, we get:
+<span style="display: flex; flex-direction: column;">
+<figure>
+ <img src="Figures/Figure_toy_example.png" alt="" style="width:50%">
+ <br>
+ <figcaption><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Figure 1: </b> example of scores for EcoIndex</figcaption>
+ </figure>
+<br>&nbsp;<br>
+</span>  
 - random_projection.py implements a random projection method for the EcoIndex. The EcoIndex is given by the rank of the bin receiving the projection. The code generates random samples, and we compute the historical EcoIndex, the new EcoIndex, and then the difference between the two;
 ```
 $ python3 random_projection.py
