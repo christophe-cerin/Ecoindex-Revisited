@@ -22,12 +22,12 @@ Indeed, the initial process requires recalculating each quantile according to th
 $ python3 test_eco_index.py http://www.google.fr
 http://www.google.fr ; 80 ; 12 ; 19160 ; 90.97 ; 1.18 ; 1.77
 ```
-- ToyExampleEcoindex.py draws random urls and generates a pictures for the scores. As an example, we get:
+- ToyExampleEcoindex.py draws random urls and generates a bar picture for the scores. As an example, on Figure 1, we get:
 <span style="display: flex; flex-direction: column;">
 <figure>
  <img src="Figures/Figure_toy_example.png" alt="" style="width:50%">
  <br>
- <figcaption><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Figure 1: </b> example of scores for EcoIndex</figcaption>
+ <figcaption><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Figure 1: </b> example of scores for the EcoIndex metric</figcaption>
  </figure>
 <br>&nbsp;<br>
 </span>  
