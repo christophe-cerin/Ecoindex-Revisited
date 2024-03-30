@@ -116,13 +116,13 @@ Query time: 0.01154590000078315
 We used a 3-d virtual space of 512 random 3d points
 ```
 
-- In the file `ComputeRMSE_euclidean_distance.py,` we compute an EcoIndex score based on the Euclidean distance from each (dom, request, size) point to the origin, namely (0, 0, 0). This is the most trivial definition we can put in place to bypass the quantiles and the weights. Our implementation considers that the point with the smallest distance to the origin has an EcoIndex score of 100, and the point with the greatest distance to the origin has an EcoIndex score of 100. Note that the input dataset does not contain the outliers we compute with the Scikit-learn iForest implementation. Indeed, we noticed, for instance, that the original dataset contains size components of high values. This point indicates that many EcoIndex scores are above 99.5 since the distance of all these corresponding points is low compared to the distance of a high value for the size component. Figure 1 presents an example of a dataset after eliminating the outliers.
+- In the file `ComputeRMSE_euclidean_distance.py,` we compute an EcoIndex score based on the Euclidean distance from each (dom, request, size) point to the origin, namely (0, 0, 0). This is the most trivial definition we can put in place to bypass the quantiles and the weights. Our implementation considers that the point with the smallest distance to the origin has an EcoIndex score of 100, and the point with the greatest distance to the origin has an EcoIndex score of 100. Note that the input dataset does not contain the outliers we compute with the Scikit-learn iForest implementation. Indeed, we noticed, for instance, that the original dataset contains size components of high values. This point indicates that many EcoIndex scores are above 99.5 since the distance of all these corresponding points is low compared to the distance of a high value for the size component. Figure 2 presents an example of a dataset after eliminating the outliers.
 
 <span style="display: flex; flex-direction: column;">
 <figure>
  <img src="Figures/Figure_1.png" alt="" style="width:50%">
  <br>
- <figcaption><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Figure 1: </b> example of a dataset after canceling the outliers</figcaption>
+ <figcaption><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Figure 2: </b> example of a dataset after canceling the outliers</figcaption>
  </figure>
 <br>&nbsp;<br>
 </span>
